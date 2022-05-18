@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es">
+    <head>
+        <title>REGISTRO DE EDITORIALES</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">>>
+    
+
+    </head>
+    <body>
+        
+        
+         <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+                <div class="card-body">
+                    <h5 class="card-title">Exito</h5>
+                    <p class="card-text" th:text="${exito}"></p>
+                </div>
+            </div>
+            <div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+                <div class="card-body">
+                    <h5 class="card-title">Error</h5>
+                    <p class="card-text" th:text="${error}"></p>
+                </div>
+            </div>
+        
+        <H1 align="center">REGISTRE UNA EDITORIAL</H1>
+        <form  action="paginaEditorial/registrarEditorial" method="POST" align="center">
+           
+            <label>Nombre de la editorial</label> <br>
+            <input type="text" name="nombre"> <br>
+            
+
+            <button type="submit">Registrar</button>
+            <button type="reset">Borrar</button>
+        </form>
+    
+
+    
+
+    <H1  align="center">LISTA DE EDITORIALES</H1>
+    <table action="/paginaEditorial/listarEditoriales" method="GET" class="table">
+        <thead>
+            <tr <tr th:each="nombre:${nombreEditoriales}" align="center">
+                <th scope="col">Nombre</th><br>
+                <th scope="col">Editar Editorial</th><br>
+                <th scope="col">Eliminar Editorial</th><br>
+                <th scope="col">Buscar Editorial</th><br>
+            </tr>
+        </thead>
+        <tbody>
+          
+
+            <tr th:each="nombre:${nombreEditoriales}" th:text=”${nombre.getNombre()}” align="center">
+              
+               
+                <td><button type="submit" ><a href="/paginaEditorial/editarEditorial" class="btn btn-primary">Editar</a></button></td>
+                <td><button type="submit"><a href="/paginaEditorial/eliminarEditorial" class="btn btn-danger">Eliminar</a></button></td>
+                <td><button type="submit"><a href="/paginaEditorial/buscarEditorialPorid" class="btn btn-info">Buscar</a></button></td>
+            
+                
+            </tr>
+
+
+
+
+        </tbody>
+    </table>
+    
+   
+   
+    <H1  align="center">EDITAR UNA EDITORIAL</H1>
+        <form  action="paginaEditorial/editarEditorial" method="POST" align="center">
+            
+            <label>Nombre Original de la Editorial</label> <br>
+            <input type="text" name="nombreViejo"> <br>
+            <label>Id de la editorial</label> <br>
+            <input type="text" name="id"> <br>
+            <label>Nombre al cual quiere cambiar la Editorial</label> <br>
+            <input type="text" name="nombreNuevo"> <br>
+            <button type="submit">Guardar</button>
+            <button type="reset">Borrar</button>
+        </form>
+    
+     
+        <H1 align="center">DAR DE BAJA UNA EDITORIAL</H1>
+          <form action="paginaEditorial/eliminarEditorial" method= "POST" align="center">
+            <label>Id de la editorial</label> <br>
+            <input type="text" name="id"> <br>
+
+            <button type="submit">Guardar</button>
+            <button type="reset">Borrar</button>
+        </form>
+    
+    
+
+
+    
+    
+        <H1 align="center">BUSCAR UNA EDITORIAL A TRAVES DEL ID</H1>
+        <form action="paginaEditorial/buscarEditorialPorid" method= "GET" align="center">
+            <label>Id de la editorial</label> <br>
+            <input type="text" name="id"> <br>
+
+            <button type="submit">Guardar</button>
+            <button type="reset">Borrar</button>
+        </form>
+        
+         <H1  align="center">BUSCAR UNA EDITORIAL A TRAVES DEL NOMBRE</H1>
+        <form action="paginaEditorial/buscarEditorialPorNombre" method="GET" align="center">
+            <label>Nombre de la editorial</label> <br>
+            <input type="text" name="nombre"> <br>
+ 
+            <button type="submit">Guardar</button>
+            <button type="reset">Borrar</button>
+        </form>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    </body>
+
+</html>
+        

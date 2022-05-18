@@ -1,0 +1,10 @@
+h1{
+    font-size: medium;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    color: black;
+}
+
+body{
+    background-image: image("libreria.jpg");
+}

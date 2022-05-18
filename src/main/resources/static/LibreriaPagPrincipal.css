@@ -1,0 +1,46 @@
+
+
+
+h1{
+    font-size:xx-large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    color: white;
+    
+}
+
+h2{
+    font-size: x-large;
+    font-family: cursive;
+    text-align: center;
+    color: white;
+    
+}
+
+
+a:link{
+    font-size:x-large;
+    color:white;
+    
+}
+a:hover{
+    text-decoration: solid;
+    background-color:black;
+    color: white;
+}
+
+body{
+    margin-top: 15%;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center ;
+    background-image:url("libreria.jpg");
+    image-rendering: crisp-edges;
+      
+      }
+
+      img{
+          opacity:initial;
+      }
+

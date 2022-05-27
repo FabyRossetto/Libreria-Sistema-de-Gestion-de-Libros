@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -7,9 +7,13 @@ package com.libreria.libreriaSpring.controladores;
 
 import com.libreria.libreriaSpring.entidades.Autor;
 import com.libreria.libreriaSpring.entidades.Editorial;
+import com.libreria.libreriaSpring.entidades.Libro;
 import com.libreria.libreriaSpring.servicios.LibroServicio;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,32 +24,113 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Fabi
  */
 @Controller
-@RequestMapping
+@RequestMapping("/pagLibro")
 public class LibroController {
-    LibroServicio ls=new LibroServicio();
-    
-    
+
+    @Autowired
+    private LibroServicio ls;
+
+    //metodo para crear el libro
+    @PostMapping("/registrarLibro")//cuando entra a la barra del servidor ejecuta el metodo
+    public String GuardarLibro(ModelMap modelo, @RequestParam Long isbn, @RequestParam String titulo, @RequestParam Integer anio, @RequestParam String autor, @RequestParam String edit) throws Exception {
+        try {
+            ls.CrearLibro(isbn, titulo, anio, autor, edit);
+            modelo.put("exito", "su libro se ha registrado con exito");
+        } catch (Exception a) {
+            modelo.put("error", "no se pudo registrar su libro");
+
+        }
+
+        return "PaginaLibro";
+    }
+
    
-     
-     //metodo para crear el libro
-     @PostMapping("/registrarLibro")//cuando entra a la barra del servidor ejecuta el metodo
-            public String GuardarLibro(ModelMap modelo,@RequestParam Long isbn,@RequestParam String titulo,@RequestParam Integer anio,@RequestParam Autor autor,@RequestParam Editorial edit) throws Exception{
-               try{
-                ls.CrearLibro(isbn, titulo,anio, autor, edit);
-             
-               }catch (Exception a) {
-                  modelo.put("error",a.getMessage());
-                  modelo.put("isbn",isbn);
-                  modelo.put("titulo",titulo);
-                  modelo.put("anio",anio);
-                  modelo.put("autor",autor);
-                  modelo.put("editorial",edit);
-                   
-               }
-               
-               modelo.put("titulo", "Bienvenido a LA LIBRERIA");
-               modelo.put("descripcion","Tu libro fue registrado correctamente");
-              return "PaginaPrincipal";  
-            }
-    
+
+    @PostMapping("/editarLibro")
+    public String editarLibro(ModelMap modelo, @RequestParam String tituloViejo, @RequestParam String tituloNuevo, @RequestParam String id, @RequestParam Long isbn, @RequestParam Integer anio, @RequestParam String autorViejo, @RequestParam String autorNuevo, @RequestParam String editVieja, @RequestParam String editNueva) throws Exception {
+        try {
+            ls.modificarLibro(id, isbn, tituloViejo, tituloNuevo, anio, autorViejo, autorNuevo, editVieja, editNueva);
+            modelo.put("exito", "su libro se ha editado con exito");
+        } catch (Exception a) {
+            modelo.put("error", "su libro no se ha podido editar");
+
+        }
+
+        return "PaginaLibro";
+    }
+
+    @PostMapping("/eliminarLibro")
+    public String Eliminar(ModelMap modelo, @RequestParam String id) throws Exception {
+        try {
+            ls.darDeBajaLibro(id);
+            modelo.put("exito", "su libro se ha eliminado con exito");
+
+        } catch (Exception a) {
+            modelo.put("error", "su libro no se ha podido eliminar");
+
+        }
+
+        return "PaginaLibro.html";
+    }
+
+    @GetMapping("/buscarLibroPorid")
+    public String buscarLibroPorId(ModelMap modelo, @RequestParam String id) {
+        try {
+            Libro a = ls.buscarLibroPorId(id);
+            modelo.put("exito", "el libro encontrado es " + a);
+        } catch (Exception a) {
+            modelo.put("error", "su libro no se ha podido encontrar");
+        }
+        return "PaginaLibro.html";
+    }
+
+    @GetMapping("/buscarLibroPorNombre")
+    public String buscarLibroPorNombre(ModelMap modelo, @RequestParam String titulo) {
+        try {
+            Libro li = ls.buscarLibroPorTitulo(titulo);
+            modelo.put("exito", "el libro encontrado es " + li);
+        } catch (Exception a) {
+            modelo.put("error", "el libro no se ha podido encontrar");
+        }
+        return "PaginaLibro.html";
+    }
+
+    @GetMapping("/buscarLibroPorIsbn")
+    public String buscarLibroPorIsbn(ModelMap modelo, @RequestParam Long isbn) {
+        try {
+            Libro li = ls.buscarLibroPorIsbn(isbn);
+            modelo.put("exito", "el libro encontrado es " + li);
+        } catch (Exception a) {
+            modelo.put("error", "el libro no se ha podido encontrar");
+        }
+        return "PaginaLibro.html";
+    }
+
+    @GetMapping("/buscarLibroPorAutor")
+    public String buscarLibroPorAutor(ModelMap modelo, @RequestParam String autor) {
+        try {
+            List<Libro> li = ls.buscarLibroPorAutor(autor);
+            
+                modelo.put("exito", li);
+            
+
+        } catch (Exception a) {
+            modelo.put("error", "el libro no se ha podido encontrar");
+        }
+        return "PaginaLibro.html";
+    }
+
+    @GetMapping("/buscarLibroPorEditorial")
+    public String buscarLibroPorEditorial(ModelMap modelo, @RequestParam String editorial) {
+        try {
+            List<Libro> li = ls.buscarLibroPorEditorial(editorial);
+            
+                modelo.put("exito", li);
+            
+        } catch (Exception a) {
+            modelo.put("error", "el libro no se ha podido encontrar");
+        }
+        return "PaginaLibro.html";
+    }
+
 }

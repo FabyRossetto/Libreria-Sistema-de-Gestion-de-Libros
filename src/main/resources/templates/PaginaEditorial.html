@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang="es">
     <head>
         <title>REGISTRO DE EDITORIALES</title>
@@ -43,35 +38,29 @@ and open the template in the editor.
 
     
 
-    <H1  align="center">LISTA DE EDITORIALES</H1>
-    <table action="/paginaEditorial/listarEditoriales" method="GET" class="table">
-        <thead>
-            <tr <tr th:each="nombre:${nombreEditoriales}" align="center">
-                <th scope="col">Nombre</th><br>
-                <th scope="col">Editar Editorial</th><br>
-                <th scope="col">Eliminar Editorial</th><br>
-                <th scope="col">Buscar Editorial</th><br>
-            </tr>
-        </thead>
-        <tbody>
-          
+   <H1  align="center">LISTA DE EDITORIALES</H1>
+                                        <table align="center" >
+                                            <tr >
+                                                <th >  nombre  </th> 
 
-            <tr th:each="nombre:${nombreEditoriales}" th:text=”${nombre.getNombre()}” align="center">
-              
-               
-                <td><button type="submit" ><a href="/paginaEditorial/editarEditorial" class="btn btn-primary">Editar</a></button></td>
-                <td><button type="submit"><a href="/paginaEditorial/eliminarEditorial" class="btn btn-danger">Eliminar</a></button></td>
-                <td><button type="submit"><a href="/paginaEditorial/buscarEditorialPorid" class="btn btn-info">Buscar</a></button></td>
-            
-                
-            </tr>
+                                                <th > id  </th> 
+
+                                                <th > alta</th> 
+
+                                            </tr>
+                                            <tr>
+                                                <tr th:each="editorial:${nombre}">
+                                                    <th th:text="${editorial.getNombre()}"> nombre </th> 
+
+                                                    <th th:text="${editorial.getId()}"> id </th> 
+
+                                                    <th th:text="${editorial.getAlta()}" > alta </th>
 
 
 
+                                                </tr>
 
-        </tbody>
-    </table>
-    
+                                        </table>
    
    
     <H1  align="center">EDITAR UNA EDITORIAL</H1>

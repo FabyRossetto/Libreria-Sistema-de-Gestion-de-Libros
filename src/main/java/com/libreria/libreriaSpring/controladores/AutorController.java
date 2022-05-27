@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AutorController {
 
     @Autowired
-    AutorServicio as;
+    private AutorServicio as;
 
     
     //metodo para crear el autor
@@ -38,26 +38,15 @@ try{
         Modelo.put("exito","su autor se ha registrado con exito");
 }catch(Exception e){
    Modelo.put("error","hubo un error al registrar el autor");
+
 }
         return "PaginaAutor";
     }
+    
      
-     @GetMapping("/listarAutores")
-    public String listarAutores(ModelMap modelo) {
-        
-        modelo.addAttribute("nombreAutores", as.listarAutor());
-      
-        return "PaginaAutor.html";
-    }
-
-////    @GetMapping("/editarAutor")
-//    public String EditarAutor() {
-//        
-//        return "PaginaAutor.html";
-//    }
     
     @PostMapping("/editarAutor")
-    public String editarAutor(ModelMap modelo, @RequestParam String nombreViejo, @RequestParam String id, @RequestParam String nombreNuevo) throws Exception {
+    public String editarAutor(ModelMap modelo,@RequestParam String id, @RequestParam String nombreViejo,  @RequestParam String nombreNuevo) throws Exception {
         try {
             as.modificarAutor(id, nombreViejo,nombreNuevo);
            modelo.put("exito","su autor se ha editado con exito");
@@ -69,11 +58,7 @@ try{
        
         return "PaginaAutor";
     }
-//    @GetMapping("/eliminarAutor")
-//    public String EliminarAutor() {
-//        
-//        return "PaginaAutor.html";
-//    }
+
 
     @PostMapping("/eliminarAutor")
     public String Eliminar(ModelMap modelo, @RequestParam String id) throws Exception {

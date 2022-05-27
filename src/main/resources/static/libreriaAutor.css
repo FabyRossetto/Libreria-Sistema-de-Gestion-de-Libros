@@ -1,0 +1,78 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23/05/2022, 11:03:28
+    Author     : Fabi
+*/
+
+#verde{
+    font-family:cursive;
+    font-size:large;
+    color:white;
+    background-color:green;
+}
+
+#error{
+    font-family:cursive;
+    font-size:large;
+    color:white;
+    background-color:red;
+}
+
+
+H1{
+    
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-size: larger;
+color: darksalmon;
+
+}
+
+label{
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ color:indianred;
+ font-size: medium;
+}
+
+body {
+    margin-left: 5%;
+    background-color: lemonchiffon;
+    background-attachment: fixed;
+    background-size: 35%;
+    background-repeat:repeat-y;
+    background-position:right;
+    background-image: url("/escritor.jpg");
+    margin-bottom:auto;
+   
+   
+}
+
+
+
+table {
+   margin-right: 40%;
+   border: 1px solid mediumpurple;
+}
+th, td {
+   
+   vertical-align: top;
+   border: 1px solid mediumpurple;
+}
+
+th{
+    font-size:smaller;
+    font-family: cursive;
+    color:mediumpurple
+    
+}
+
+td{
+    font-size:smaller;
+    font-family: cursive;
+    color:mediumpurple
+    
+}
+

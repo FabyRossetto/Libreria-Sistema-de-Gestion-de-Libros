@@ -103,13 +103,7 @@ public class EditorialController {
   }
             
             
-            @GetMapping("/listarEditoriales")
-            public String listarEditoriales( ModelMap modelo){
-                
-               modelo.addAttribute("nombre",es.listarEditorial());
-             return "PaginaEditorial";
-            } 
-           
+            
   }
 
 

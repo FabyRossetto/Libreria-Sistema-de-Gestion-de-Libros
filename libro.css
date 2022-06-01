@@ -1,0 +1,46 @@
+H1{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: larger;
+    color: beige;
+    
+    }
+   
+   
+    label{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     color:blanchedalmond;
+     font-size: medium;
+    }
+    
+   
+    
+    body {
+        margin-left: 10%;
+        margin-top: 2%;
+        background-color: coral;
+        background-attachment: fixed;
+        
+        background-repeat:repeat-x;
+        background-position:bottom;
+        background-position:top ;
+      
+        background-image: url("/Imágenes/libro.jpg");
+       margin-bottom: 0%;
+       
+       
+    }
+    
+    th{
+      
+        font-size:medium;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:white;
+        
+    }
+    
+    td{
+        
+        font-size:medium;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:white;
+    }

@@ -4,68 +4,66 @@
         <title>REGISTRO DE EDITORIALES</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">>>
-    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link>
+        <link rel="stylesheet" href="\EditorialStyle.css"></link>
 
     </head>
     <body>
-        
-        
-         <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
-                <div class="card-body">
-                    <h5 class="card-title">Exito</h5>
-                    <p class="card-text" th:text="${exito}"></p>
-                </div>
+
+
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+            <div class="card-body">
+                <h5 class="card-title">Exito</h5>
+                <p class="card-text" th:text="${exito}"></p>
             </div>
-            <div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
-                <div class="card-body">
-                    <h5 class="card-title">Error</h5>
-                    <p class="card-text" th:text="${error}"></p>
-                </div>
+        </div>
+        <div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+            <div class="card-body">
+                <h5 class="card-title">Error</h5>
+                <p class="card-text" th:text="${error}"></p>
             </div>
+        </div>
+
+        <H1  align="left">LISTA DE EDITORIALES</H1>
+        <table align="left">
+            <tr >
+                <th >  nombre  </th> 
+
+                <th > id  </th> 
+
+                <th > alta</th> 
+
+            </tr>
+
+            <tr th:each="editorial:${nombre}">
+                <td th:text="${editorial.getNombre()}"> nombre </td> 
+
+                <td th:text="${editorial.getId()}"> id </td> 
+
+                <td th:text="${editorial.getAlta()}" > alta </td>
+
+
+
+            </tr>
+
+        </table>
         
-        <H1 align="center">REGISTRE UNA EDITORIAL</H1>
-        <form  action="paginaEditorial/registrarEditorial" method="POST" align="center">
-           
+        <H1 id="registrar" align="left">REGISTRE UNA EDITORIAL</H1>
+        <form  action="paginaEditorial/registrarEditorial" method="POST" align="left">
+
             <label>Nombre de la editorial</label> <br>
             <input type="text" name="nombre"> <br>
-            
+
 
             <button type="submit">Registrar</button>
             <button type="reset">Borrar</button>
         </form>
-    
-
-    
-
-   <H1  align="center">LISTA DE EDITORIALES</H1>
-                                        <table align="center" >
-                                            <tr >
-                                                <th >  nombre  </th> 
-
-                                                <th > id  </th> 
-
-                                                <th > alta</th> 
-
-                                            </tr>
-                                            <tr>
-                                                <tr th:each="editorial:${nombre}">
-                                                    <th th:text="${editorial.getNombre()}"> nombre </th> 
-
-                                                    <th th:text="${editorial.getId()}"> id </th> 
-
-                                                    <th th:text="${editorial.getAlta()}" > alta </th>
 
 
+        <H1 id="editar" align="right">EDITAR UNA EDITORIAL</H1>
+        <form  action="paginaEditorial/editarEditorial" method="POST" align="right">
 
-                                                </tr>
-
-                                        </table>
-   
-   
-    <H1  align="center">EDITAR UNA EDITORIAL</H1>
-        <form  action="paginaEditorial/editarEditorial" method="POST" align="center">
-            
             <label>Nombre Original de la Editorial</label> <br>
             <input type="text" name="nombreViejo"> <br>
             <label>Id de la editorial</label> <br>
@@ -75,42 +73,41 @@
             <button type="submit">Guardar</button>
             <button type="reset">Borrar</button>
         </form>
-    
-     
-        <H1 align="center">DAR DE BAJA UNA EDITORIAL</H1>
-          <form action="paginaEditorial/eliminarEditorial" method= "POST" align="center">
+
+
+        <H1 align="right">DAR DE BAJA UNA EDITORIAL</H1>
+        <form action="paginaEditorial/eliminarEditorial" method= "POST" align="right">
             <label>Id de la editorial</label> <br>
             <input type="text" name="id"> <br>
 
             <button type="submit">Guardar</button>
             <button type="reset">Borrar</button>
         </form>
-    
-    
 
 
-    
-    
-        <H1 align="center">BUSCAR UNA EDITORIAL A TRAVES DEL ID</H1>
-        <form action="paginaEditorial/buscarEditorialPorid" method= "GET" align="center">
+
+
+
+
+        <H1 align="right">BUSCAR UNA EDITORIAL A TRAVES DEL ID</H1>
+        <form action="paginaEditorial/buscarEditorialPorid" method= "GET" align="right">
             <label>Id de la editorial</label> <br>
             <input type="text" name="id"> <br>
 
             <button type="submit">Guardar</button>
             <button type="reset">Borrar</button>
         </form>
-        
-         <H1  align="center">BUSCAR UNA EDITORIAL A TRAVES DEL NOMBRE</H1>
-        <form action="paginaEditorial/buscarEditorialPorNombre" method="GET" align="center">
+
+        <H1  align="right">BUSCAR UNA EDITORIAL A TRAVES DEL NOMBRE</H1>
+        <form action="paginaEditorial/buscarEditorialPorNombre" method="GET" align="right">
             <label>Nombre de la editorial</label> <br>
             <input type="text" name="nombre"> <br>
- 
+
             <button type="submit">Guardar</button>
             <button type="reset">Borrar</button>
         </form>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </body>
 
 </html>
-        

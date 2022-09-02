@@ -53,7 +53,7 @@ public class ControladorPrincipal {
     
            
 
-    @GetMapping("/registrarLibro") //me gustaria que vaya a esta pagina cuando tambien quiera modificar,dar de baja,etc. Como lo agrego?
+    @GetMapping("/registrarLibro") 
     public String PaginaLibro(ModelMap modelo) {
         modelo.addAttribute("nombreLibros", ls.listarLibro());
         return "PaginaLibro.html";

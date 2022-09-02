@@ -38,7 +38,7 @@ Siempre va primero el link de bootstrap y el de las librerias. Y por ultimo los 
         <tr>
             <th> nombre </th>
 
-            <th> id </th>
+            <th> id del libro</th>
 
             <th> alta</th>
             <th> año </th>
@@ -53,7 +53,7 @@ Siempre va primero el link de bootstrap y el de las librerias. Y por ultimo los 
         <tr th:each="libro : ${nombreLibros}">
             <td th:text="${libro.getTitulo()}"> titulo </td>
 
-            <td th:text="${libro.getId()}"> id </td>
+            <td th:text="${libro.getId()}"> id del libro</td>
 
             <td th:text="${libro.getAlta()}"> alta </td>
             <td th:text="${libro.getAnio()}"> año </td>
@@ -66,7 +66,8 @@ Siempre va primero el link de bootstrap y el de las librerias. Y por ultimo los 
         </tr>
 
     </table>
-
+    <div
+        
     <H1 align="left" id="registrar">REGISTRE UN LIBRO</H1>
     <form  action="/pagLibro/registrarLibro" method="POST" align="left">
 
@@ -97,8 +98,12 @@ Siempre va primero el link de bootstrap y el de las librerias. Y por ultimo los 
         <input type="text" name="tituloNuevo"> <br>
         <label>Nombre del Autor original</label> <br>
         <input type="text" name="autorViejo"> <br>
+        <label>ID del Autor original</label> <br>
+        <input type="text" name="idAutor"> <br>
         <label>Nombre por el cual desea cambiarlo</label> <br>
         <input type="text" name="autorNuevo"> <br>
+        <label>ID de la editorial original</label> <br>
+        <input type="text" name="idEditorial"> <br>
         <label>Nombre de la Editorial original</label> <br>
         <input type="text" name="editVieja"> <br>
         <label>Nombre por el cual desea cambiarlo</label> <br>
@@ -123,7 +128,7 @@ Siempre va primero el link de bootstrap y el de las librerias. Y por ultimo los 
         <button type="reset">Borrar</button>
     </form>
 
-
+    </div>
 
 
     <class>

@@ -30,12 +30,26 @@ public class LibroController {
     @Autowired
     private LibroServicio ls;
 
+    @GetMapping("/pagLibro")
+    public String PaginaLibro(ModelMap modelo) {
+        modelo.addAttribute("nombreLibros", ls.listarLibro());
+        return "PaginaLibro.html";
+    }
+
+    @GetMapping("/registrarLibro")
+    public String GuardarLibro(ModelMap modelo) {
+        modelo.addAttribute("nombreLibros", ls.listarLibro());
+        return "PaginaLibro.html";
+    }
+
     //metodo para crear el libro
     @PostMapping("/registrarLibro")//cuando entra a la barra del servidor ejecuta el metodo
-    public String GuardarLibro(ModelMap modelo, @RequestParam Long isbn, @RequestParam String titulo, @RequestParam Integer anio, @RequestParam String autor, @RequestParam String edit) throws Exception {
+    public String GuardarLibro(ModelMap modelo, @RequestParam String titulo, @RequestParam Long isbn, @RequestParam Integer anio, @RequestParam String autor, @RequestParam String edit) throws Exception {
         try {
-            ls.CrearLibro(isbn, titulo, anio, autor, edit);
+            ls.CrearLibro(titulo, isbn, anio, autor, edit);
             modelo.put("exito", "su libro se ha registrado con exito");
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
+
         } catch (Exception a) {
             modelo.put("error", "no se pudo registrar su libro");
 
@@ -44,13 +58,18 @@ public class LibroController {
         return "PaginaLibro";
     }
 
-   
+    @GetMapping("/editarLibro")
+    public String editarLibro(ModelMap modelo) {
+        modelo.addAttribute("nombreLibros", ls.listarLibro());
+        return "PaginaLibro.html";
+    }
 
     @PostMapping("/editarLibro")
-    public String editarLibro(ModelMap modelo, @RequestParam String tituloViejo, @RequestParam String tituloNuevo, @RequestParam String id, @RequestParam Long isbn, @RequestParam Integer anio, @RequestParam String autorViejo, @RequestParam String autorNuevo, @RequestParam String editVieja, @RequestParam String editNueva) throws Exception {
+    public String editarLibro(ModelMap modelo, @RequestParam String id, @RequestParam Long isbn, @RequestParam String tituloViejo, @RequestParam String tituloNuevo, @RequestParam Integer anio, @RequestParam String idAutor, @RequestParam String autorViejo, @RequestParam String autorNuevo, @RequestParam String idEditorial, @RequestParam String editVieja, @RequestParam String editNueva) throws Exception {
         try {
-            ls.modificarLibro(id, isbn, tituloViejo, tituloNuevo, anio, autorViejo, autorNuevo, editVieja, editNueva);
+            ls.modificarLibro(id, isbn, tituloViejo, tituloNuevo, anio, idAutor, autorViejo, autorNuevo, idEditorial, editVieja, editNueva);
             modelo.put("exito", "su libro se ha editado con exito");
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
         } catch (Exception a) {
             modelo.put("error", "su libro no se ha podido editar");
 
@@ -59,11 +78,18 @@ public class LibroController {
         return "PaginaLibro";
     }
 
+    @GetMapping("/eliminarLibro")
+    public String Eliminar(ModelMap modelo) {
+        modelo.addAttribute("nombreLibros", ls.listarLibro());
+        return "PaginaLibro.html";
+    }
+
     @PostMapping("/eliminarLibro")
     public String Eliminar(ModelMap modelo, @RequestParam String id) throws Exception {
         try {
             ls.darDeBajaLibro(id);
             modelo.put("exito", "su libro se ha eliminado con exito");
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
 
         } catch (Exception a) {
             modelo.put("error", "su libro no se ha podido eliminar");
@@ -110,9 +136,8 @@ public class LibroController {
     public String buscarLibroPorAutor(ModelMap modelo, @RequestParam String autor) {
         try {
             List<Libro> li = ls.buscarLibroPorAutor(autor);
-            
-                modelo.put("exito", li);
-            
+
+            modelo.put("exito", li);
 
         } catch (Exception a) {
             modelo.put("error", "el libro no se ha podido encontrar");
@@ -124,9 +149,9 @@ public class LibroController {
     public String buscarLibroPorEditorial(ModelMap modelo, @RequestParam String editorial) {
         try {
             List<Libro> li = ls.buscarLibroPorEditorial(editorial);
-            
-                modelo.put("exito", li);
-            
+
+            modelo.put("exito", li);
+
         } catch (Exception a) {
             modelo.put("error", "el libro no se ha podido encontrar");
         }

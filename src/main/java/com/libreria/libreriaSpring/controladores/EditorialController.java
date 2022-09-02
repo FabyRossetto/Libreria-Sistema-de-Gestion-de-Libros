@@ -37,6 +37,7 @@ public class EditorialController {
              try{ 
                 es.CrearEditorial(nombre);
               Modelo.put("exito","su editorial se ha registrado con exito");
+              Modelo.addAttribute("nombre",es.listarEditorial());
 }catch(Exception e){
    Modelo.put("error","hubo un error al registrar la editorial");
 }
@@ -53,6 +54,7 @@ public class EditorialController {
                 try{
                 es.modificarEditorial(id, nombreViejo,nombreNuevo);
                 modelo.put("exito", "su editorial ha sido editada con exito");
+                modelo.addAttribute("nombre",es.listarEditorial());
                }catch (Exception a) {
                   modelo.put("error","no se ha podido editar la editorial");
                   
@@ -71,6 +73,7 @@ public class EditorialController {
                 try{
                 es.darDeBajaEditorial(id);
                 modelo.put("exito","su editorial ha sido dada de baja");
+                modelo.addAttribute("nombre",es.listarEditorial());
              
                }catch (Exception a) {
                   modelo.put("error","su editorial no se pudo dar de baja");

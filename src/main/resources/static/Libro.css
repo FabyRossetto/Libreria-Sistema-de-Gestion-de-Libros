@@ -13,10 +13,16 @@ H1{
     font-size: larger;
     color: beige;
     
-    
     }
+    div{
+        margin-left: 15%;
+    }
+    
     #registrar{
         margin-top: 12%;
+        font-family:cursive;
+        font-size: larger;
+        color: beige;
     }
     
     #editar{
@@ -25,9 +31,12 @@ H1{
     
     class{
         position: absolute;
-        top:50%;
-        margin-left:60%;
+        top:90%;
+        margin-left:40%;
         margin-top: 2%;
+        font-family:cursive;
+        font-size: larger;
+        color: beige;
     }
    
    

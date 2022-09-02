@@ -6,6 +6,8 @@
 package com.libreria.libreriaSpring.servicios;
 
 
+import com.libreria.libreriaSpring.entidades.Autor;
+import com.libreria.libreriaSpring.entidades.Editorial;
 import com.libreria.libreriaSpring.entidades.Libro;
 import com.libreria.libreriaSpring.repositorios.AutorRepositorio;
 import com.libreria.libreriaSpring.repositorios.EditorialRepositorio;
@@ -28,21 +30,26 @@ public class LibroServicio {
 
     @Autowired
     LibroRepositorio lr;
+    @Autowired
+    AutorServicio as;
+    @Autowired
+    EditorialServicio es;
    
    
 
     @Transactional
-    public Libro CrearLibro(Long isbn, String titulo, Integer anio, String autor, String edit) throws Exception {
+    public Libro CrearLibro(String titulo,Long isbn, Integer anio, String nombreAutor, String nombreEdit) throws Exception {
 //se le pasa por parametro lo que el usuario llena 
         try {
-            validar(isbn, titulo, anio, autor, edit);
+            validar( titulo, isbn,anio, nombreAutor, nombreEdit);
             Libro li = new Libro();
-            li.setIsbn(isbn);
+            
             li.setTitulo(titulo);
+            li.setIsbn(isbn);
             li.setAnio(anio);
             li.setAlta(true);
-            li.setAutor(autor);
-            li.setEditorial(edit);
+            li.setAutor(as.CrearAutor(nombreAutor));
+            li.setEditorial(es.CrearEditorial(nombreEdit));
 
             return lr.save(li);
 
@@ -53,10 +60,10 @@ public class LibroServicio {
     }
 
     @Transactional
-    public void modificarLibro(String id, Long isbn, String tituloViejo, String tituloNuevo, Integer anio, String autorViejo, String autorNuevo, String editVieja, String editNueva) throws Exception {
+    public void modificarLibro(String id, Long isbn, String tituloViejo, String tituloNuevo, Integer anio,String idAutor, String autorViejo, String autorNuevo,String idEditorial, String editVieja, String editNueva) throws Exception {
 
-        validar(isbn, tituloViejo, anio, autorViejo, editVieja);
-        validar(isbn, tituloNuevo, anio, autorNuevo, editNueva);
+        validar(tituloViejo,isbn, anio, autorViejo, editVieja);
+        validar( tituloNuevo,isbn, anio, autorNuevo, editNueva);
         //optional es una clase que puede o no puede contener un valor, se usa por las dudas que el dato ingresado sea nulo
 
         Optional<Libro> respuesta = lr.findById(id);
@@ -67,8 +74,8 @@ public class LibroServicio {
             libro.setIsbn(isbn);
             libro.setTitulo(tituloNuevo);
             libro.setAnio(anio);
-            libro.setAutor(autorNuevo);
-            libro.setEditorial(editNueva);
+            libro.setAutor(as.modificarAutor(idAutor, autorViejo, autorNuevo));
+            libro.setEditorial(es.modificarEditorial(idEditorial, editVieja, editNueva));
             libro.setAlta(true);
 
             lr.save(libro);
@@ -90,23 +97,24 @@ public class LibroServicio {
         }
     }
 
-    public void validar(Long isbn, String titulo, Integer anio, String autor, String edit) throws Exception {
+    public void validar( String titulo,Long isbn, Integer anio, String nombreAutor, String nombreEdit) throws Exception {
 
-        if (isbn == null || isbn.toString().trim().isEmpty() || isbn.toString().length() < 4) {
-
-            throw new Exception(" El isbn no puede ser nulo,ni tener menos de 4 caracteres");
-        }
+       
         if (titulo == null || titulo.trim().isEmpty()) {
             throw new Exception(" El titulo no puede ser nulo");
+        }
+         if (isbn == null || isbn.toString().trim().isEmpty() || isbn.toString().length() < 4) {
+
+            throw new Exception(" El isbn no puede ser nulo,ni tener menos de 4 caracteres");
         }
         if (anio == null || anio.toString().trim().isEmpty() || anio > 2022) {
             throw new Exception(" El año no puede ser nulo,ni futuro");
         }
 
-        if (autor == null || autor.trim().isEmpty()) {
+        if (nombreAutor == null || nombreAutor.trim().isEmpty()) {
             throw new Exception(" El autor no puede ser nulo)");
         }
-        if (edit == null || edit.trim().isEmpty()) {
+        if (nombreEdit == null || nombreEdit.trim().isEmpty()) {
             throw new Exception(" La editorial no puede ser nula)");
         }
 
@@ -155,31 +163,8 @@ public class LibroServicio {
        
         List<Libro> l = lr.findAll();
 
-//        for (Object ejemplare : l) {
-//            aux = +1;
-//        }
-//        System.out.println(" ejemplares totales" + aux);
 
         return l;
 
     }
-
-//    public void calcularEjemplares( Integer ejemplares){
-//        Scanner Leer=new Scanner(System.in);
-//    
-//        List<Libro>ejemplaresPrestados= new ArrayList();
-//        List<Libro>ejemplaresRestantes= new ArrayList();
-//        System.out.println("Desea ingresar un nuevo prestamo?");
-//        String Respuesta=Leer.next();
-//        do{
-//        for (Object ejem : ejemplaresPrestados) {
-//           Integer EP=+1;
-//            for (Libro ejemp2: ejemplaresRestantes) {
-//               Integer ER= ejemplares-1;
-//            }
-//   
-//        }
-//       
-//    }while (Respuesta.equalsIgnoreCase("si"));
-//    
 }

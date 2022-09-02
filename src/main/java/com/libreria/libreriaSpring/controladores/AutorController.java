@@ -36,6 +36,7 @@ public class AutorController {
 try{
         as.CrearAutor(nombre);
         Modelo.put("exito","su autor se ha registrado con exito");
+        Modelo.addAttribute("nombreAutores", as.listarAutor());
 }catch(Exception e){
    Modelo.put("error","hubo un error al registrar el autor");
 
@@ -50,6 +51,7 @@ try{
         try {
             as.modificarAutor(id, nombreViejo,nombreNuevo);
            modelo.put("exito","su autor se ha editado con exito");
+           modelo.addAttribute("nombreAutores", as.listarAutor());
         } catch (Exception a) {
             modelo.put("error", "su autor no se ha podido editar");
            
@@ -65,6 +67,7 @@ try{
         try {
             as.darDeBajaAutor(id);
             modelo.put("exito","su autor se ha eliminado con exito");
+            modelo.addAttribute("nombreAutores", as.listarAutor());
 
         } catch (Exception a) {
             modelo.put("error", "su autor no se ha podido eliminar");

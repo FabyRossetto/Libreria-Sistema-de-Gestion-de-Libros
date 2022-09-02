@@ -41,7 +41,7 @@ public class EditorialServicio {
     }
 
     @Transactional
-    public void modificarEditorial(String id, String nombreViejo,String nombreNuevo) throws Exception {
+    public Editorial modificarEditorial(String id, String nombreViejo,String nombreNuevo) throws Exception {
 
         validar(nombreViejo);
         //optional es una clase que puede o no puede contener un valor, se usa por las dudas que el dato ingresado sea nulo
@@ -54,7 +54,7 @@ public class EditorialServicio {
            
             e.setNombre(nombreNuevo);
             e.setAlta(true);
-
+           return e;
         } else {
             throw new Exception("no se encontro ninguna editorial con ese identificador");
         }

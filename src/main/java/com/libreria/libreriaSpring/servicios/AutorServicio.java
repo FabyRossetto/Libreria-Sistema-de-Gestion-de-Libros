@@ -43,7 +43,7 @@ public class AutorServicio {
     }
 
     @Transactional
-    public void modificarAutor(String id, String nombreViejo,String nombreNuevo) throws Exception {
+    public Autor modificarAutor(String id, String nombreViejo,String nombreNuevo) throws Exception {
        
          validar(nombreViejo);
         //optional es una clase que puede o no puede contener un valor, se usa por las dudas que el dato ingresado sea nulo
@@ -55,7 +55,7 @@ public class AutorServicio {
            
             au.setNombre(nombreNuevo);
             au.setAlta(true);
-
+            return au;
         } else {
             throw new Exception("no se encontro ningun autor con ese identificador");
         }

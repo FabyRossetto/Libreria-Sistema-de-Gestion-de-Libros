@@ -66,7 +66,7 @@ Siempre va primero el link de bootstrap y el de las librerias. Y por ultimo los 
         </tr>
 
     </table>
-    <div
+    <div>
         
     <H1 align="left" id="registrar">REGISTRE UN LIBRO</H1>
     <form  action="/pagLibro/registrarLibro" method="POST" align="left">
@@ -89,21 +89,17 @@ Siempre va primero el link de bootstrap y el de las librerias. Y por ultimo los 
 
 
 
-    <H1 id="editar" align="left" >EDITAR UN LIBRO</H1>
+    <H1 id="editar" align="left" > EDITAR UN LIBRO</H1>
     <form  id="editar" action="pagLibro/editarLibro" method="POST" align="left">
 
-        <label>Nombre del Libro original</label> <br>
-        <input type="text" name="tituloViejo"> <br>
-        <label>Nombre por el cual desea cambiarlo</label> <br>
+        <label>Nombre del libro por el cual desea cambiarlo</label> <br>
         <input type="text" name="tituloNuevo"> <br>
         <label>Nombre del Autor original</label> <br>
         <input type="text" name="autorViejo"> <br>
-        <label>ID del Autor original</label> <br>
-        <input type="text" name="idAutor"> <br>
-        <label>Nombre por el cual desea cambiarlo</label> <br>
+        
+        <label>Nombre del Autor nuevo</label> <br>
         <input type="text" name="autorNuevo"> <br>
-        <label>ID de la editorial original</label> <br>
-        <input type="text" name="idEditorial"> <br>
+        
         <label>Nombre de la Editorial original</label> <br>
         <input type="text" name="editVieja"> <br>
         <label>Nombre por el cual desea cambiarlo</label> <br>
@@ -133,7 +129,7 @@ Siempre va primero el link de bootstrap y el de las librerias. Y por ultimo los 
 
     <class>
 
-    <H1  align="right">BUSCAR UN LIBRO A TRAVES DEL ID</H1>
+    <H1  align="right">BUSCAR UN LIBRO A TRAVES DEL ID </H1>
     <form action="pagLibro/buscarLibroPorid" method="GET" align="right">
         <label>Id del Libro</label> <br>
         <input type="text" name="id"> <br>

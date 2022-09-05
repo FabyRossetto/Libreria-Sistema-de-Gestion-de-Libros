@@ -14,9 +14,10 @@ H1{
     color: beige;
     
     }
-    div{
+    .div{
         margin-left: 15%;
     }
+   
     
     #registrar{
         margin-top: 12%;
@@ -26,16 +27,19 @@ H1{
     }
     
     #editar{
-        margin-top: 2%
+        margin-top: 2%;
+        font-family:cursive;
+        font-size: larger;
+        color: beige;
     }
     
     class{
         position: absolute;
         top:90%;
-        margin-left:40%;
+        margin-left:50%;
         margin-top: 2%;
         font-family:cursive;
-        font-size: larger;
+        font-size: large;
         color: beige;
     }
    
@@ -49,9 +53,10 @@ H1{
    
     
     body {
+       
+        margin-top: 10%;
         margin-left: 10%;
         margin-right: 10%;
-        margin-top: 10%;
         background-color: coral;
         background-attachment: scroll;
         

@@ -29,13 +29,20 @@ public class AutorServicio {
 //se le pasa por parametro lo que el usuario llena 
         try {
             validar(nombre);
+        
+            Autor existente= ar.buscarAutorPorNombre(nombre);
+            if (existente==null){
+            
             Autor a = new Autor();
            
             a.setNombre(nombre);
             a.setAlta(true);
-
-            
-        return ar.save(a);
+            return ar.save(a);
+            }else{
+               return ar.save(existente);
+                
+            }
+       
         } catch (Exception e) {
             System.out.println("No se ha podido crear el autor");
             return null;
@@ -43,32 +50,29 @@ public class AutorServicio {
     }
 
     @Transactional
-    public Autor modificarAutor(String id, String nombreViejo,String nombreNuevo) throws Exception {
-       
-         validar(nombreViejo);
-        //optional es una clase que puede o no puede contener un valor, se usa por las dudas que el dato ingresado sea nulo
-        Optional <Autor> respuesta = ar.findById(id);
-        if (respuesta.isPresent()) {
-            Autor au = respuesta.get();
-            //no se crea un autor sino que se busca ,mediante el repo, el autor por id.
-            //Si la respuesta is present,entonces que la traiga y setee los atributos, sino que tire una excepcion
-           
-            au.setNombre(nombreNuevo);
-            au.setAlta(true);
-            return au;
-        } else {
-            throw new Exception("no se encontro ningun autor con ese identificador");
-        }
-
+    public Autor modificarAutor(String nombreViejo,String nombreNuevo) throws Exception {
+       //no lo valido porque uso este metodo en el modificra libro,y si el autor esta vacio no me deja modificarlo.
+         try{
+         Autor modificar = buscarAutorPorNombre(nombreViejo);
+         
+            modificar.setNombre(nombreNuevo);
+            modificar.setAlta(true);
+            return modificar;
+         }catch(Exception e){
+            Autor autorNuevo = CrearAutor(nombreNuevo);
+            return autorNuevo;
+         }
+        
     }
+    
 
     @Transactional// cualquier manejo que se haga con la db es una transaccion
     public void darDeBajaAutor(String id) throws Exception {
         Optional<Autor> respuesta = ar.findById(id);
         if (respuesta.isPresent()) {
             Autor a = respuesta.get();
-            a.setAlta(false);
-            ar.save(a);
+            ar.delete(a);
+            
         } else {
             throw new Exception("no se encontro el autor que desea dar de baja");
         }

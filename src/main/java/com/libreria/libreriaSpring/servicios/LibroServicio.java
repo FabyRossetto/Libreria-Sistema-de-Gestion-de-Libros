@@ -60,10 +60,9 @@ public class LibroServicio {
     }
 
     @Transactional
-    public void modificarLibro(String id, Long isbn, String tituloViejo, String tituloNuevo, Integer anio,String idAutor, String autorViejo, String autorNuevo,String idEditorial, String editVieja, String editNueva) throws Exception {
+    public void modificarLibro(String id, Long isbn, String tituloNuevo, Integer anio, String autorViejo, String autorNuevo,String editVieja, String editNueva) throws Exception {
 
-        validar(tituloViejo,isbn, anio, autorViejo, editVieja);
-        validar( tituloNuevo,isbn, anio, autorNuevo, editNueva);
+       
         //optional es una clase que puede o no puede contener un valor, se usa por las dudas que el dato ingresado sea nulo
 
         Optional<Libro> respuesta = lr.findById(id);
@@ -74,8 +73,8 @@ public class LibroServicio {
             libro.setIsbn(isbn);
             libro.setTitulo(tituloNuevo);
             libro.setAnio(anio);
-            libro.setAutor(as.modificarAutor(idAutor, autorViejo, autorNuevo));
-            libro.setEditorial(es.modificarEditorial(idEditorial, editVieja, editNueva));
+            libro.setAutor(as.modificarAutor(autorViejo, autorNuevo));
+            libro.setEditorial(es.modificarEditorial(editVieja, editNueva));
             libro.setAlta(true);
 
             lr.save(libro);
@@ -92,6 +91,16 @@ public class LibroServicio {
             Libro l = respuesta.get();
             l.setAlta(false);
             lr.save(l);
+        } else {
+            throw new Exception("no se encontro el libro que desea dar de baja");
+        }
+    }
+    @Transactional// cualquier manejo que se haga con la db es una transaccion
+    public void EliminarLibro(String id) throws Exception {
+        Optional<Libro> respuesta = lr.findById(id);
+        if (respuesta.isPresent()) {
+            Libro l = respuesta.get();
+            lr.delete(l);
         } else {
             throw new Exception("no se encontro el libro que desea dar de baja");
         }

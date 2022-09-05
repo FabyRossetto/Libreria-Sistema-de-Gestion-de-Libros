@@ -65,9 +65,9 @@ public class LibroController {
     }
 
     @PostMapping("/editarLibro")
-    public String editarLibro(ModelMap modelo, @RequestParam String id, @RequestParam Long isbn, @RequestParam String tituloViejo, @RequestParam String tituloNuevo, @RequestParam Integer anio, @RequestParam String idAutor, @RequestParam String autorViejo, @RequestParam String autorNuevo, @RequestParam String idEditorial, @RequestParam String editVieja, @RequestParam String editNueva) throws Exception {
+    public String editarLibro(ModelMap modelo, @RequestParam String id, @RequestParam Long isbn, @RequestParam String tituloNuevo, @RequestParam Integer anio, @RequestParam String autorViejo, @RequestParam String autorNuevo, @RequestParam String editVieja, @RequestParam String editNueva) throws Exception {
         try {
-            ls.modificarLibro(id, isbn, tituloViejo, tituloNuevo, anio, idAutor, autorViejo, autorNuevo, idEditorial, editVieja, editNueva);
+            ls.modificarLibro(id, isbn,  tituloNuevo, anio, autorViejo, autorNuevo, editVieja, editNueva);
             modelo.put("exito", "su libro se ha editado con exito");
             modelo.addAttribute("nombreLibros", ls.listarLibro());
         } catch (Exception a) {
@@ -87,7 +87,7 @@ public class LibroController {
     @PostMapping("/eliminarLibro")
     public String Eliminar(ModelMap modelo, @RequestParam String id) throws Exception {
         try {
-            ls.darDeBajaLibro(id);
+            ls.EliminarLibro(id);
             modelo.put("exito", "su libro se ha eliminado con exito");
             modelo.addAttribute("nombreLibros", ls.listarLibro());
 

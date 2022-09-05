@@ -35,7 +35,8 @@ public class AutorController {
     public String GuardarAutor(ModelMap Modelo,@RequestParam String nombre) throws Exception {
 try{
         as.CrearAutor(nombre);
-        Modelo.put("exito","su autor se ha registrado con exito");
+        Modelo.put("exito","el autor ya forma parte de la base de datos");
+        
         Modelo.addAttribute("nombreAutores", as.listarAutor());
 }catch(Exception e){
    Modelo.put("error","hubo un error al registrar el autor");
@@ -47,9 +48,9 @@ try{
      
     
     @PostMapping("/editarAutor")
-    public String editarAutor(ModelMap modelo,@RequestParam String id, @RequestParam String nombreViejo,  @RequestParam String nombreNuevo) throws Exception {
+    public String editarAutor(ModelMap modelo, @RequestParam String nombreViejo,  @RequestParam String nombreNuevo) throws Exception {
         try {
-            as.modificarAutor(id, nombreViejo,nombreNuevo);
+            as.modificarAutor( nombreViejo,nombreNuevo);
            modelo.put("exito","su autor se ha editado con exito");
            modelo.addAttribute("nombreAutores", as.listarAutor());
         } catch (Exception a) {
@@ -70,7 +71,7 @@ try{
             modelo.addAttribute("nombreAutores", as.listarAutor());
 
         } catch (Exception a) {
-            modelo.put("error", "su autor no se ha podido eliminar");
+            modelo.put("error", "su autor no se ha podido eliminar, si su autor se encuentra vinculado a un libro,primero debe eliminar el libro");
 
         }
 

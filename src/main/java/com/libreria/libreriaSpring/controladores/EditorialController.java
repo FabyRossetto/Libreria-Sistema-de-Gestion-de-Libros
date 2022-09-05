@@ -36,7 +36,7 @@ public class EditorialController {
             public String GuardarEditorial(ModelMap Modelo,@RequestParam String nombre) throws Exception{
              try{ 
                 es.CrearEditorial(nombre);
-              Modelo.put("exito","su editorial se ha registrado con exito");
+              Modelo.put("exito","su editorial ya se encuentra guardada en nuestra base de datos");
               Modelo.addAttribute("nombre",es.listarEditorial());
 }catch(Exception e){
    Modelo.put("error","hubo un error al registrar la editorial");
@@ -50,9 +50,9 @@ public class EditorialController {
     } 
             
             @PostMapping("/editarEditorial")
-            public String editarEditorial(ModelMap modelo,@RequestParam String nombreViejo,@RequestParam String id,@RequestParam String nombreNuevo)throws Exception{
+            public String editarEditorial(ModelMap modelo,@RequestParam String nombreViejo,@RequestParam String nombreNuevo)throws Exception{
                 try{
-                es.modificarEditorial(id, nombreViejo,nombreNuevo);
+                es.modificarEditorial(nombreViejo,nombreNuevo);
                 modelo.put("exito", "su editorial ha sido editada con exito");
                 modelo.addAttribute("nombre",es.listarEditorial());
                }catch (Exception a) {
@@ -71,12 +71,12 @@ public class EditorialController {
             @PostMapping("/eliminarEditorial")
             public String Eliminar(ModelMap modelo,@RequestParam String id)throws Exception{
                 try{
-                es.darDeBajaEditorial(id);
+                es.EliminarEditorial(id);
                 modelo.put("exito","su editorial ha sido dada de baja");
                 modelo.addAttribute("nombre",es.listarEditorial());
              
                }catch (Exception a) {
-                  modelo.put("error","su editorial no se pudo dar de baja");
+                  modelo.put("error","no se pudo eliminar esta editorial.Si la misma esta vinculada a un libro asegurese de eliminar primero el libro");
                  
                }
               

@@ -7,23 +7,87 @@ and open the template in the editor.
     Created on : 30/05/2022, 11:50:03
     Author     : Fabi
 */
+
+/* .contenedor{
+        width: 100%;
+        max-width: 1000px;
+        margin:0 auto;
+        overflow: hidden;
+        margin-bottom: 10%;
+        margin-top: 10%;
+    }*/
+     body {
+       
+        margin-top: 10%;
+      margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 10%;
+        background-color: coral;
+        background-attachment: scroll;
+        
+        background-repeat:repeat-x;
+       
+        
+        background-position:top;
+        
+        background-image: url("/libro.jpg");
+       
+    }
+    
+    
 H1{
-    margin-top: 2%;
-    font-family:cursive;
-    font-size: larger;
-    color: beige;
-    
-    }
-    .div{
-        margin-left: 15%;
-    }
    
+    font-family:cursive;
+    font-size: xx-large;
+    color: khaki;
+    margin-top: 5%
     
-    #registrar{
+    }
+    h2{
+        font-family:cursive;
+    font-size: x-large;
+    color: gold;
+    margin-top: 5%;
+    
+    }
+    section{
+        margin-top: 10%;
+        background-image: url("/lupa.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+       image-resolution: from-image;
+    }
+    .registro{
+        background-image: url("/registrar libro.jpg"); 
+    
+        background-repeat: no-repeat;
+        background-size: initial;
+        background-position: right;
+      
+    }
+    .editar{
+         background-image: url("/editar libro.jpg"); 
+        background-repeat: no-repeat;
+        background-size: initial;
+        background-position: left;
+    }
+    
+    .borrar{
+        height: 5cm;
+         background-image: url("/borrar libro2.jpg"); 
+        background-repeat: no-repeat;
+        background-size:initial;
+        background-position: right;
+        margin-top:10%;
+    }
+    
+/*    #registrar{
         margin-top: 12%;
         font-family:cursive;
         font-size: larger;
         color: beige;
+       
+       margin-left: 0;
     }
     
     #editar{
@@ -31,18 +95,11 @@ H1{
         font-family:cursive;
         font-size: larger;
         color: beige;
-    }
+    }*/
     
-    class{
-        position: absolute;
-        top:90%;
-        margin-left:50%;
-        margin-top: 2%;
-        font-family:cursive;
-        font-size: large;
-        color: beige;
-    }
+  
    
+    
    
     label{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -52,28 +109,10 @@ H1{
     
    
     
-    body {
-       
-        margin-top: 10%;
-        margin-left: 10%;
-        margin-right: 10%;
-        background-color: coral;
-        background-attachment: scroll;
-        
-        background-repeat:repeat-x;
-        
-        background-position:top;
-        
-      
-        background-image: url("/libro.jpg");
-        margin-bottom: 2%;
-     
-       
-       
-    }
+   
     
     th{
-      
+      margin-top: 10%;
         font-size:medium;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         color:white;
@@ -87,5 +126,26 @@ H1{
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         color:white;
          border: 2px solid white;
+         
     }
+    table{
+        margin-bottom: 10%;
+        margin-top: 5%
+    }
+/*    lo siguiente se usa para cuando la pantalla se hace muy chica poder cambiar las propiedades del front y se adapte*/
+    @media screen and(max-width: 800px){
+        .body{
+            width: 100%;
+            height: auto;
+            image-resolution: normal;
+        }
+         @media screen and(max-width: 400px){
+        .contenedor{
+            width: 100%;
+            height: auto;
+            image-resolution: normal;
+        }
+    }
+    }
+    
 

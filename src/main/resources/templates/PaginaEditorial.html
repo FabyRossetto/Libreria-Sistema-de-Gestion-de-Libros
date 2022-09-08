@@ -27,6 +27,7 @@
 
         <H1  align="left">LISTA DE EDITORIALES</H1>
         <table align="left">
+            <thead>
             <tr >
                 <th >  nombre  </th> 
 
@@ -35,7 +36,8 @@
                 <th > alta</th> 
 
             </tr>
-
+            </thead>
+            <tbody>
             <tr th:each="editorial:${nombre}">
                 <td th:text="${editorial.getNombre()}"> nombre </td> 
 
@@ -46,7 +48,7 @@
 
 
             </tr>
-
+            </tbody>
         </table>
         
         <H1 id="registrar" align="left">REGISTRE UNA EDITORIAL</H1>

@@ -11,21 +11,21 @@ H1{
     margin-top: 2%;
     font-family:cursive;
     font-size: larger;
-    color: coral
+    color: darksalmon;
     
 
 }
 
 #registrar{
-    margin-top: 20%;
+    margin-top: 30%;
 }
 #editar{
-    margin-top:-28%;
+    margin-top:-40%;
 }
 label{
     margin-top: 0%;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color:lightcoral;
+    color:indianred;
     font-size: medium;
 }
 
@@ -44,26 +44,31 @@ body {
 
 
 }
+table{
+   
+    border: 1px solid mediumpurple;
+}
 
 
 th, td {
 
     vertical-align: top;
-    border: 1px solid coral;
+    border: 1px solid mediumpurple;
 }
 
 th{
      margin-top: 2%;
     font-size:smaller;
     font-family: cursive;
-    color:lightcoral
-
+   
+color:mediumpurple
 }
 
 td{
     font-size:smaller;
     font-family: cursive;
-    color:lightcoral
+   
+    color:mediumpurple
 }
 
 

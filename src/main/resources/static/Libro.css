@@ -22,7 +22,7 @@ and open the template in the editor.
       margin-left: 10%;
         margin-right: 10%;
         margin-bottom: 10%;
-        background-color: coral;
+        background-color: lemonchiffon;
         background-attachment: scroll;
         
         background-repeat:repeat-x;
@@ -38,15 +38,15 @@ and open the template in the editor.
 H1{
    
     font-family:cursive;
-    font-size: xx-large;
-    color: khaki;
-    margin-top: 5%
+    font-size: larger;
+    color: darksalmon;
+    margin-top: 10%
     
     }
     h2{
         font-family:cursive;
-    font-size: x-large;
-    color: gold;
+    font-size: medium;
+    color: darksalmon;
     margin-top: 5%;
     
     }
@@ -81,29 +81,12 @@ H1{
         margin-top:10%;
     }
     
-/*    #registrar{
-        margin-top: 12%;
-        font-family:cursive;
-        font-size: larger;
-        color: beige;
-       
-       margin-left: 0;
-    }
-    
-    #editar{
-        margin-top: 2%;
-        font-family:cursive;
-        font-size: larger;
-        color: beige;
-    }*/
-    
-  
-   
+
     
    
     label{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-     color:blanchedalmond;
+     color:indianred;
      font-size: medium;
     }
     
@@ -113,24 +96,24 @@ H1{
     
     th{
       margin-top: 10%;
-        font-size:medium;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        color:white;
-         border: 2px solid white;
-        
+         font-size:smaller;
+    font-family: cursive;
+    color:mediumpurple;
+       border: 1px solid mediumpurple; 
     }
     
     td{
         
-        font-size:medium;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        color:white;
-         border: 2px solid white;
+        font-size:smaller;
+    font-family: cursive;
+    color:mediumpurple;
+         border: 1px solid mediumpurple;
          
     }
     table{
         margin-bottom: 10%;
-        margin-top: 5%
+        margin-top: 5%;
+        border: 1px solid mediumpurple;
     }
 /*    lo siguiente se usa para cuando la pantalla se hace muy chica poder cambiar las propiedades del front y se adapte*/
     @media screen and(max-width: 800px){

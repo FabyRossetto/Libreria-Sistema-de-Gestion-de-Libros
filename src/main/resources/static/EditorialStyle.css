@@ -12,7 +12,7 @@ H1{
     font-family:cursive;
     font-size: larger;
     color: darksalmon;
-    
+
 
 }
 
@@ -45,29 +45,29 @@ body {
 
 }
 table{
-   
-    border: 1px solid mediumpurple;
+
+    border: 1px double mediumpurple;
 }
 
 
 th, td {
 
     vertical-align: top;
-    border: 1px solid mediumpurple;
+    border: 1px double mediumpurple;
 }
 
 th{
-     margin-top: 2%;
+    margin-top: 2%;
     font-size:smaller;
     font-family: cursive;
-   
-color:mediumpurple
+
+    color:mediumpurple
 }
 
 td{
     font-size:smaller;
     font-family: cursive;
-   
+
     color:mediumpurple
 }
 

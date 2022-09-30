@@ -69,25 +69,24 @@ body {
 table {
 
     margin-right: 40%;
-    border: 1px solid mediumpurple;
+    border: 1px double mediumpurple;
 }
-th, td {
 
-    vertical-align: top;
-    border: 1px solid mediumpurple;
-}
 
 th{
     font-size:smaller;
     font-family: cursive;
-    color:mediumpurple
-
+    color:mediumpurple;
+    vertical-align: top;
+    border: 1px double mediumpurple;
 }
 
 td{
     font-size:smaller;
     font-family: cursive;
-    color:mediumpurple
+    color:mediumpurple;
+    vertical-align: top;
+    border: 1px double mediumpurple;
 
 }
 

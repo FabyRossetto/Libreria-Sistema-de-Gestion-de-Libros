@@ -32,3 +32,11 @@ body{
     background-color:lightgray;
     margin: 15px 15px 15px 15px;
 }
+@media (max-width: 576px) { 
+    
+            .carousel-item{
+            height:200px;
+            width: 100%;
+            vertical-align: middle;
+            }
+}

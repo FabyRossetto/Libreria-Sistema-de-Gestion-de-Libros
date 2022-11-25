@@ -1,12 +1,21 @@
+#verde{
+    font-family:cursive;
+    font-size:large;
+    color:white;
+    background-color:green;
+}
 
+#error{
+    font-family:cursive;
+    font-size:large;
+    color:white;
+    background-color:red;
+}
 body {
 
-    background-color:lightgray;
-    margin-bottom: 2%;
-    margin-top: 0%;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding: 0%;
+    background-color:#B3B0B0;
+
+    
 }
 
 
@@ -14,7 +23,7 @@ H1{
    margin-top: 5%;
    margin-bottom: 5%;
     font-size:xx-large;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: center;
     color: darkslategray;
     
@@ -23,25 +32,13 @@ H1{
 h2{
     margin-top: 5%;
     font-size: x-large;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana;
+    font-family:Georgia, 'Times New Roman', Times, serif;
     color: darkslategray;
-    
 }
 h3{
     font-size: large;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana;
+    font-family:cursive;
     color: darkslategray;
-    
-}
-
-
-
-.card{
-    height: 40vh;
-    margin-bottom: 5%;
-    display:inline-table;
-    width: 100%;
-    max-width: 500px;
 }
 
 
@@ -60,7 +57,7 @@ th{
     font-size:smaller;
     font-family: cursive;
     color:darkslategray;
-    border: 1px double gray;
+    border: 1px double darkslategray;
 }
 
 td{
@@ -68,18 +65,23 @@ td{
     font-size:smaller;
     font-family: cursive;
     color:darkslategray;
-    border: 1px double black;
+    border: 1px double darkslategray;
 
 }
 table{
     margin-bottom: 10%;
     
-    border: 1px double black;
+    border: 1px double darkslategray;
+}
+
+.buscar{
+    padding-left: 20%;
+    padding-right: 20%;
 }
  .container-fluid .hero {
       display: flex;
       max-width: 100%;
-      height: 80vh;
+      height: 60vh;
 
       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/libro.jpg");
       background-repeat: no-repeat;
@@ -105,6 +107,24 @@ table{
     min-height: .01%;
     overflow-x: visible;
 }
+.figure-img{
+    border: aquamarine solid 3px;
+}
+.figure-img:hover {
+    
+    width:80%;
+    height: 80%;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.registro,.borrar{
+    background: lightgray;
+    
+}
+
 
 @media screen and (max-width: 400px) {
     .table-responsive {

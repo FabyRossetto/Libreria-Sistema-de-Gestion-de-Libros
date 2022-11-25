@@ -30,8 +30,10 @@ h2{
 
 body{
     background-color:lightgray;
-    margin: 15px 15px 15px 15px;
+    
 }
+
+
 @media (max-width: 576px) { 
     
             .carousel-item{

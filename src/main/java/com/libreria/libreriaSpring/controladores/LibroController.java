@@ -24,17 +24,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Fabi
  */
 @Controller
-@RequestMapping("/pagLibro")
+@RequestMapping("/PagLibro")
 public class LibroController {
 
     @Autowired
     private LibroServicio ls;
 
-    @GetMapping("/pagLibro")
-    public String PaginaLibro(ModelMap modelo) {
-        modelo.addAttribute("nombreLibros", ls.listarLibro());
-        return "PaginaLibro.html";
-    }
+    
 
     @GetMapping("/registrarLibro")
     public String GuardarLibro(ModelMap modelo) {
@@ -44,9 +40,9 @@ public class LibroController {
 
     //metodo para crear el libro
     @PostMapping("/registrarLibro")//cuando entra a la barra del servidor ejecuta el metodo
-    public String GuardarLibro(ModelMap modelo, @RequestParam String titulo, @RequestParam Long isbn, @RequestParam Integer anio, @RequestParam String autor, @RequestParam String edit) throws Exception {
+    public String GuardarLibro(ModelMap modelo, @RequestParam String titulo, @RequestParam Long isbn, @RequestParam Integer anio, @RequestParam String nombreAutor, @RequestParam String nombreEdit) throws Exception {
         try {
-            ls.CrearLibro(titulo, isbn, anio, autor, edit);
+            ls.CrearLibro(titulo, isbn, anio, nombreAutor, nombreEdit);
             modelo.put("exito", "su libro se ha registrado con exito");
             modelo.addAttribute("nombreLibros", ls.listarLibro());
 
@@ -104,6 +100,8 @@ public class LibroController {
         try {
             Libro a = ls.buscarLibroPorId(id);
             modelo.put("exito", "el libro encontrado es " + a);
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
+           
         } catch (Exception a) {
             modelo.put("error", "su libro no se ha podido encontrar");
         }
@@ -112,11 +110,18 @@ public class LibroController {
 
     @GetMapping("/buscarLibroPorNombre")
     public String buscarLibroPorNombre(ModelMap modelo, @RequestParam String titulo) {
-        try {
-            Libro li = ls.buscarLibroPorTitulo(titulo);
+        try{
+        Libro li = ls.buscarLibroPorTitulo(titulo);
+        if(li!= null){
+            
             modelo.put("exito", "el libro encontrado es " + li);
-        } catch (Exception a) {
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
+        }
+        if(li==null){
             modelo.put("error", "el libro no se ha podido encontrar");
+        }
+        } catch(Exception a){
+           return null; 
         }
         return "PaginaLibro.html";
     }
@@ -126,6 +131,7 @@ public class LibroController {
         try {
             Libro li = ls.buscarLibroPorIsbn(isbn);
             modelo.put("exito", "el libro encontrado es " + li);
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
         } catch (Exception a) {
             modelo.put("error", "el libro no se ha podido encontrar");
         }
@@ -138,6 +144,7 @@ public class LibroController {
             List<Libro> li = ls.buscarLibroPorAutor(autor);
 
             modelo.put("exito", li);
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
 
         } catch (Exception a) {
             modelo.put("error", "el libro no se ha podido encontrar");
@@ -151,6 +158,7 @@ public class LibroController {
             List<Libro> li = ls.buscarLibroPorEditorial(editorial);
 
             modelo.put("exito", li);
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
 
         } catch (Exception a) {
             modelo.put("error", "el libro no se ha podido encontrar");

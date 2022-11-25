@@ -141,10 +141,13 @@ public class LibroServicio {
     }
 
     public Libro buscarLibroPorTitulo(String titulo) throws Exception {
-
+       try{      
         Libro libro = lr.buscarLibroPorTitulo(titulo);
 
         return libro;
+       }catch(Exception e){ 
+           return null;
+       }
     }
 
     public Libro buscarLibroPorIsbn(Long isbn) throws Exception {

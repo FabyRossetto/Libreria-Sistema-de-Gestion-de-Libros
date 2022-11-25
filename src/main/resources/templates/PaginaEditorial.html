@@ -10,106 +10,157 @@
 
     </head>
     <body>
+        <div class="container-fluid">
 
+            <div  id= "verde" th:if="${exito}!=null" >
 
-        <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
-            <div class="card-body">
-                <h5 class="card-title">Exito</h5>
-                <p class="card-text" th:text="${exito}"></p>
+                <h5 class="card-title" >Exito</h5>
+                <p class="card-text"  th:text="${exito}"></p>
+
             </div>
-        </div>
-        <div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
-            <div class="card-body">
+            <div id="error" th:if="${error}!=null" >
+
                 <h5 class="card-title">Error</h5>
                 <p class="card-text" th:text="${error}"></p>
+
             </div>
+            <header>
+                <nav class="navbar bg-dark justify-content-end">
+
+
+                    <ul class="nav justify-content-end ">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="http://localhost:8080/">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/registrarLibro">Libros</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/registrarAutor">Autores</a>
+                        </li>
+
+
+                    </ul>
+                </nav>    
+
+
+               <img src="editorial1.jpg" class="img-fluid" alt="Editorial">
+
+            </header>
+            <div class="cuerpo">
+                <div class="table-responsive" align="right">
+
+                    <H1  align="right"><u>LISTA DE EDITORIALES</u></H1>
+                    <table align="right">
+                        <thead>
+                            <tr >
+                                <th >  nombre  </th> 
+
+                                <th > id  </th> 
+
+                                <th > alta</th> 
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="editorial:${nombre}">
+                                <td th:text="${editorial.getNombre()}"> nombre </td> 
+
+                                <td th:text="${editorial.getId()}"> id </td> 
+
+                                <td th:text="${editorial.getAlta()}" > alta </td>
+
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <H2 align="left"><u>REGISTRAR UNA EDITORIAL</u></H2>
+                <form  action="paginaEditorial/registrarEditorial" method="POST" align="left">
+
+                    <label>     Nombre    </label> <br>
+                    <input type="text" name="nombre"> <br>
+                    <br>
+
+                    <button type="submit" class="btn btn-outline-success">Registrar</button>
+                    <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+                </form>
+
+
+
+
+                <H2 align="left"><u>EDITAR UNA EDITORIAL</u></H2>
+                <form  action="paginaEditorial/editarEditorial" method="POST" align="left">
+
+                    <label>Nombre Viejo</label> <br>
+                    <input type="text" name="nombreViejo"> <br>
+                    <label>Id</label> <br>
+                    <input type="text" name="id"> <br>
+                    <label>Nombre Nuevo</label> <br>
+                    <input type="text" name="nombreNuevo"> <br>
+                    <br>
+                    <button type="submit" class="btn btn-outline-success">Guardar</button>
+                    <button type="reset" class="btn btn-outline-danger">Borrar</button>
+                </form>
+
+
+                <H2 align="left"><u>ELIMINAR UNA EDITORIAL</u></H2>
+                <form action="paginaEditorial/eliminarEditorial" method= "POST" align="left">
+                    <label>Id de la editorial</label> <br>
+                    <input type="text" name="id"> <br>
+                    <br>
+                    <button type="submit" class="btn btn-outline-success">Eliminar</button>
+                    <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+                </form>
+
+
+
+
+
+                <H2 align="left"><u>BUSCAR UNA EDITORIAL</u></H2>
+
+                <H3 align="left">POR ID</H3>
+                <form action="paginaEditorial/buscarEditorialPorid" method= "GET" align="left">
+                    <label>Id</label> <br>
+                    <input type="text" name="id"> <br>
+                    <br>
+                    <button type="submit" class="btn btn-outline-success">Buscar</button>
+                    <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+                </form>
+
+                <H3  align="left">POR NOMBRE</H3>
+                <form action="paginaEditorial/buscarEditorialPorNombre" method="GET" align="left">
+                    <label>Nombre de la editorial</label> <br>
+                    <input type="text" name="nombre"> <br>
+                    <br>
+                    <button type="submit" class="btn btn-outline-success">Buscar</button>
+                    <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+                </form>
+                <br>
+                <br>
+            </div>
+            <footer>
+                <nav class="navbar bg-dark justify-content-center">
+
+                    <ul class="nav justify-content-center">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="https://www.linkedin.com/in/fabyrossetto/"><u>Proyecto Realizado por Fabiana Rossetto</u> </a>                                                                                                                       
+
+                        </li>
+
+                    </ul>
+                </nav>
+            </footer>
+
+
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         </div>
 
-        <H1  align="left">LISTA DE EDITORIALES</H1>
-        <table align="left">
-            <thead>
-            <tr >
-                <th >  nombre  </th> 
-
-                <th > id  </th> 
-
-                <th > alta</th> 
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="editorial:${nombre}">
-                <td th:text="${editorial.getNombre()}"> nombre </td> 
-
-                <td th:text="${editorial.getId()}"> id </td> 
-
-                <td th:text="${editorial.getAlta()}" > alta </td>
-
-
-
-            </tr>
-            </tbody>
-        </table>
-        
-        <H1 id="registrar" align="left">REGISTRE UNA EDITORIAL</H1>
-        <form  action="paginaEditorial/registrarEditorial" method="POST" align="left">
-
-            <label>Nombre de la editorial</label> <br>
-            <input type="text" name="nombre"> <br>
-
-
-            <button type="submit">Registrar</button>
-            <button type="reset">Borrar</button>
-        </form>
-
-
-        <H1 id="editar" align="right">EDITAR UNA EDITORIAL</H1>
-        <form  action="paginaEditorial/editarEditorial" method="POST" align="right">
-
-            <label>Nombre Original de la Editorial</label> <br>
-            <input type="text" name="nombreViejo"> <br>
-            <label>Id de la editorial</label> <br>
-            <input type="text" name="id"> <br>
-            <label>Nombre al cual quiere cambiar la Editorial</label> <br>
-            <input type="text" name="nombreNuevo"> <br>
-            <button type="submit">Guardar</button>
-            <button type="reset">Borrar</button>
-        </form>
-
-
-        <H1 align="right">DAR DE BAJA UNA EDITORIAL</H1>
-        <form action="paginaEditorial/eliminarEditorial" method= "POST" align="right">
-            <label>Id de la editorial</label> <br>
-            <input type="text" name="id"> <br>
-
-            <button type="submit">Guardar</button>
-            <button type="reset">Borrar</button>
-        </form>
-
-
-
-
-
-
-        <H1 align="right">BUSCAR UNA EDITORIAL A TRAVES DEL ID</H1>
-        <form action="paginaEditorial/buscarEditorialPorid" method= "GET" align="right">
-            <label>Id de la editorial</label> <br>
-            <input type="text" name="id"> <br>
-
-            <button type="submit">Guardar</button>
-            <button type="reset">Borrar</button>
-        </form>
-
-        <H1  align="right">BUSCAR UNA EDITORIAL A TRAVES DEL NOMBRE</H1>
-        <form action="paginaEditorial/buscarEditorialPorNombre" method="GET" align="right">
-            <label>Nombre de la editorial</label> <br>
-            <input type="text" name="nombre"> <br>
-
-            <button type="submit">Guardar</button>
-            <button type="reset">Borrar</button>
-        </form>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </body>
 
 </html>

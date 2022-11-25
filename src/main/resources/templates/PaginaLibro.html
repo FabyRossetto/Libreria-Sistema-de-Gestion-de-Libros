@@ -23,234 +23,283 @@ Siempre va primero el link de bootstrap y el de las librerias. Y por ultimo los 
                 <body>
                     <div class="container-fluid">
 
-                        <div th:if="${exito}!=null" class="card text-white bg-success mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Exito</h5>
-                                <p class="card-text" th:text="${exito}"></p>
-                            </div>
+                        <div  id= "verde" th:if="${exito}!=null" >
+
+                            <h5 class="card-title" >Exito</h5>
+                            <p class="card-text"  th:text="${exito}"></p>
+
                         </div>
-                        <div th:if="${error}!=null" class="card text-white bg-danger mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Error</h5>
-                                <p class="card-text" th:text="${error}"></p>
-                            </div>
+                        <div id="error" th:if="${error}!= null" >
+
+                            <h5 class="card-title">Error</h5>
+                            <p class="card-text" th:text="${error}"></p>
+
                         </div>
                         <header>
+                            <nav class="navbar bg-dark justify-content-end">
+
+
+                                <ul class="nav justify-content-end ">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" href="http://localhost:8080/">Inicio</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" href="/registrarAutor">Autores</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" href="/registrarEditorial">Editoriales</a>
+                                    </li>
+
+
+                                </ul>
+                            </nav>                                                                                                                                                                    
+
                             <div class="hero">
 
                                 <div class="text">
 
                                     <p><strong> "En mi caso, si un libro esta bien escrito siempre se me hace demasiado corto."  <br><br>
-                                               Jane Austen</strong></p>
+                                                    Jane Austen</strong></p>
 
 
-                                </div>
-                            </div>
+                                                    </div>
+                                                    </div>
 
-                        </header>
-                        <div class="table-responsive">
-                        <H1 align="center"><strong><u>LISTA DE LIBROS</u></strong></H1>
-                        <table align="center">
+                                                    </header>
+                                                    <div class="lista">
 
-                            <tr>
-                                <th> nombre </th>
+                                                        <div class="table-responsive">
+                                                            <H1 align="center"><u>LISTA DE LIBROS</u></H1>
+                                                            <table align="center">
 
-                                <th> id del libro</th>
+                                                                <tr>
+                                                                    <th> nombre </th>
 
-                                <th> alta</th>
-                                <th> año </th>
+                                                                    <th> id del libro</th>
 
-                                <th> isbn </th>
+                                                                    <th> alta</th>
+                                                                    <th> año </th>
 
-                                <th> autor</th>
-                                <th> editorial</th>
+                                                                    <th> isbn </th>
 
-                            </tr>
-                            <tr>
-                                <tr th:each="libro : ${nombreLibros}">
-                                    <td th:text="${libro.getTitulo()}"> titulo </td>
+                                                                    <th> autor</th>
+                                                                    <th> editorial</th>
 
-                                    <td th:text="${libro.getId()}"> id del libro</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <tr th:each="libro : ${nombreLibros}">
+                                                                        <td th:text="${libro.getTitulo()}"> titulo </td>
 
-                                    <td th:text="${libro.getAlta()}"> alta </td>
-                                    <td th:text="${libro.getAnio()}"> año </td>
-                                    <td th:text="${libro.getIsbn()}"> isbn </td>
-                                    <td th:text="${libro.getAutor()}"> autor </td>
-                                    <td th:text="${libro.getEditorial()}"> editorial </td>
+                                                                        <td th:text="${libro.getId()}"> id del libro</td>
 
-
-
-                                </tr>
-
-                        </table>
-                        </div>
-                        <section >
-                        <div class="card-deck">
-                            <div class="card">
-                                <img src="/registrar libro.jpg"  height="80%" class="card-img" alt="imagen de la registracion de un libro">
-                                    <div class="card-body">
-
-                                        <a href="#registrar">Registrar un libro</a>
-                                    </div>
-                            </div>
-                            <div class="card">
-                                <img src="/editar libro.jpg" height="80%" class="card-img" alt="imagen de la registracion de un libro">
-                                    <div class="card-body">
-                                        <a href="#editar">  Editar un libro</a>
-                                    </div>
-                            </div>
-                            <div class="card">
-                                <img src="/borrar libro2.jpg" height="80%" class="card-img" alt="imagen de la registracion de un libro">
-                                    <div class="card-body">
-
-                                        <a href="#borrar">  Borrar un libro</a>
-                                    </div>
-                            </div>
-                            <div class="card">
-                                <img src="/lupa.jpg" height="80%" class="card-img" alt="imagen de la registracion de un libro">
-                                    <div class="card-body">
-                                        <a href="#buscar">Buscar un libro</a>
-
-                                    </div>
-                            </div>
-                        </div>
-
-                        </section>
-
-                        <span>
-
-                        <div class="registro" >
-
-                            <form id="registrar" action="/pagLibro/registrarLibro" method="POST" align="center">
-                                <h2 align="center" ><strong><u>REGISTRAR UN LIBRO</u></strong></h2>
-                                <label>Nombre del Libro</label> <br>
-                                    <input type="text" name="titulo"> <br>
-                                            <label>Isbn del Libro</label> <br>
-                                                <input type="num" name="isbn"> <br>
-                                                        <label>Año del Libro</label> <br>
-                                                            <input type="num" name="anio"> <br>
-                                                                    <label>Autor del Libro</label> <br>
-                                                                        <input type="text" name="autor"> <br>
-                                                                                <label>Editorial del Libro</label> <br>
-                                                                                    <input type="text" name="edit"> <br>
-
-                                                                                            <button type="submit">Registrar</button>
-                                                                                            <button type="reset">Borrar</button>
-
-                                                                                            </form>
-
-                                                                                            </div>    
+                                                                        <td th:text="${libro.getAlta()}"> alta </td>
+                                                                        <td th:text="${libro.getAnio()}"> año </td>
+                                                                        <td th:text="${libro.getIsbn()}"> isbn </td>
+                                                                        <td th:text="${libro.getAutor()}"> autor </td>
+                                                                        <td th:text="${libro.getEditorial()}"> editorial </td>
 
 
 
-                                                                                            <div class="editar">
+                                                                    </tr>
 
-                                                                                                <form  id="editar" action="pagLibro/editarLibro" method="POST" align="center">
-                                                                                                    <h2  align="center" ><strong><u> EDITAR UN LIBRO</u></strong></h2>
-                                                                                                    <label>Nombre del libro por el cual desea cambiarlo</label> <br>
-                                                                                                        <input type="text" name="tituloNuevo"> <br>
-                                                                                                                <label>Nombre del Autor original</label> <br>
-                                                                                                                    <input type="text" name="autorViejo"> <br>
-                                                                                                                            <label>Nombre del Autor nuevo</label> <br>
-                                                                                                                                <input type="text" name="autorNuevo"> <br>
-                                                                                                                                        <label>Nombre de la Editorial original</label> <br>
-                                                                                                                                            <input type="text" name="editVieja"> <br>
-                                                                                                                                                    <label>Nombre por el cual desea cambiarlo</label> <br>
-                                                                                                                                                        <input type="text" name="editNueva"> <br>
-                                                                                                                                                                <label>Id del Libro</label> <br>
-                                                                                                                                                                    <input type="text" name="id"> <br>
-                                                                                                                                                                            <label>Isbn del Libro</label> <br>
-                                                                                                                                                                                <input type="num" name="isbn"> <br>
-                                                                                                                                                                                        <label>Año del Libro</label> <br>
-                                                                                                                                                                                            <input type="num" name="anio"> <br>
-                                                                                                                                                                                                    <button type="submit">Guardar</button>
-                                                                                                                                                                                                    <button type="reset">Borrar</button>
-                                                                                                                                                                                                    </form>
+                                                            </table>
+                                                        </div>
+                                                        <div class="row" align="center">
+                                                            <div class="col-3">
+                                                                <figure>
+                                                                    <a href="#registrar">
+                                                                        <img src="/1.png" class="figure-img img-fluid rounded" alt="Agregar Libro">
+                                                                    </a>
+                                                                </figure>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <figure>
+                                                                    <a href="#editar">
+                                                                        <img src="/2.jpg" class="figure-img img-fluid rounded" alt="Editar Libro">
+                                                                    </a>
+                                                                </figure>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <figure>
+                                                                    <a href="#borrar">
+                                                                        <img src="/3.jpg" class="figure-img img-fluid rounded" alt="Borrar Libro">
+                                                                    </a>
+                                                                </figure>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <figure>
+                                                                    <a href="#buscar">
+                                                                        <img src="/4.jpg" class="figure-img img-fluid rounded" alt="Buscar Libro">
+                                                                    </a>
+                                                                </figure>
+                                                            </div>
 
-                                                                                                                                                                                                    </div>
-                        </span>
+                                                        </div>
 
-                                                                                                                                                                                                    <div class="borrar">
+                                                    </div>
+                                                    <span>
 
-                                                                                                                                                                                                        <form id="borrar" action="pagLibro/eliminarLibro" method="POST" align="center">
 
-                                                                                                                                                                                                        <h2 align="center"  ><strong><u>DAR DE BAJA UN LIBRO</u></strong></h2>
+                                                        <div class="registro" >
+
+                                                            <br>
+                                                                <form id="registrar" action="PagLibro/registrarLibro" method="POST" align="center">
+                                                                    <h2 align="center" ><u>REGISTRAR UN LIBRO</u></h2>
+                                                                    <label>Nombre</label> <br>
+                                                                        <input type="text" name="titulo"> <br>
+                                                                                <label>Isbn</label> <br>
+                                                                                    <input type="num" name="isbn"> <br>
+                                                                                            <label>Año</label> <br>
+                                                                                                <input type="num" name="anio"> <br>
+                                                                                                        <label>Autor</label> <br>
+                                                                                                            <input type="text" name="nombreAutor"> <br>
+                                                                                                                    <label>Editorial</label> <br>
+                                                                                                                        <input type="text" name="nombreEdit"> <br>
+                                                                                                                                <br>
+                                                                                                                                    <button type="submit" class="btn btn-outline-success">Registrar</button>
+                                                                                                                                    <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+
+                                                                                                                                    </form>
+                                                                                                                                    <br>
+                                                                                                                                        <br>
+                                                                                                                                            <br>
+                                                                                                                                                </div>    
+
+
+
+                                                                                                                                                <div class="editar">
+
+                                                                                                                                                    <form  id="editar" action="/PagLibro/editarLibro" method="POST" align="center">
+                                                                                                                                                        <h2  align="center" ><u> EDITAR UN LIBRO</u></h2>
+                                                                                                                                                        <label>Nombre nuevo</label> <br>
+                                                                                                                                                            <input type="text" name="tituloNuevo"> <br>
+                                                                                                                                                                    <label>Autor original</label> <br>
+                                                                                                                                                                        <input type="text" name="autorViejo"> <br>
+                                                                                                                                                                                <label>Autor nuevo</label> <br>
+                                                                                                                                                                                    <input type="text" name="autorNuevo"> <br>
+                                                                                                                                                                                            <label>Editorial original</label> <br>
+                                                                                                                                                                                                <input type="text" name="editVieja"> <br>
+                                                                                                                                                                                                        <label>Editorial nueva</label> <br>
+                                                                                                                                                                                                        <input type="text" name="editNueva"> <br>
                                                                                                                                                                                                         <label>Id del Libro</label> <br>
-
                                                                                                                                                                                                         <input type="text" name="id"> <br>
-
-                                                                                                                                                                                                        <button type="submit">Guardar</button>
-                                                                                                                                                                                                        <button type="reset">Borrar</button>
+                                                                                                                                                                                                        <label>Isbn</label> <br>
+                                                                                                                                                                                                        <input type="num" name="isbn"> <br>
+                                                                                                                                                                                                        <label>Año</label> <br>
+                                                                                                                                                                                                        <input type="num" name="anio"> <br>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <button type="submit" class="btn btn-outline-success">Editar</button>
+                                                                                                                                                                                                        <button type="reset" class="btn btn-outline-danger">Cancelar</button>
                                                                                                                                                                                                         </form>
 
                                                                                                                                                                                                         </div>
+                                                                                                                                                                                                        </span>
+
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <div class="borrar">
+
+                                                                                                                                                                                                        <form id="borrar" action="/PagLibro/eliminarLibro" method="POST" align="center">
+
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <h2 align="center" ><u>ELIMINAR UN LIBRO</u></h2>
+                                                                                                                                                                                                        <label>Id del Libro</label> <br>
+
+                                                                                                                                                                                                        <input type="text" name="id"> <br>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <button type="submit" class="btn btn-outline-success">Eliminar</button>
+                                                                                                                                                                                                        <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+                                                                                                                                                                                                        </form>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        </div>
+
+                                                                                                                                                                                                        <div class="buscar">
 
 
-                                                                                                                                                                                                        <h2 id="buscar" align="center"><strong><u>BUSCAR LIBROS</u></strong></h2>
-
+                                                                                                                                                                                                        <h2 id="buscar" align="center"><u>BUSCAR LIBROS</u></h2>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <br>
                                                                                                                                                                                                         <h3 align="right">POR ID </h3>
-                                                                                                                                                                                                        <form action="pagLibro/buscarLibroPorid" method="GET" align="right">
+                                                                                                                                                                                                        <form action="/PagLibro/buscarLibroPorid" method="GET" align="right">
                                                                                                                                                                                                         <label>Id del Libro</label> <br>
                                                                                                                                                                                                         <input type="text" name="id"> <br>
-
-                                                                                                                                                                                                        <button type="submit">Guardar</button>
-                                                                                                                                                                                                        <button type="reset">Borrar</button>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <button type="submit" class="btn btn-outline-success">Buscar</button>
+                                                                                                                                                                                                        <button type="reset" class="btn btn-outline-danger">Cancelar</button>
 
                                                                                                                                                                                                         </form>
 
                                                                                                                                                                                                         <h3 align="left">POR NOMBRE</h3>
-                                                                                                                                                                                                        <form action="pagLibro/buscarLibroPorNombre" method="GET" align="left">
+                                                                                                                                                                                                        <form action="/PagLibro/buscarLibroPorNombre" method="GET" align="left">
                                                                                                                                                                                                         <label>Nombre del Libro</label> <br>
                                                                                                                                                                                                         <input type="text" name="titulo"> <br>
-
-                                                                                                                                                                                                        <button type="submit">Guardar</button>
-                                                                                                                                                                                                        <button type="reset">Borrar</button>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <button type="submit" class="btn btn-outline-success">Buscar</button>
+                                                                                                                                                                                                        <button type="reset" class="btn btn-outline-danger">Cancelar</button>
 
                                                                                                                                                                                                         </form>
 
 
 
                                                                                                                                                                                                         <h3 align="right">POR ISBN</h3>
-                                                                                                                                                                                                        <form action="pagLibro/buscarLibroPorIsbn" method="GET" align="right">
+                                                                                                                                                                                                        <form action="/PagLibro/buscarLibroPorIsbn" method="GET" align="right">
 
-                                                                                                                                                                                                        <label>Isbn del Libro</label> <br>
+                                                                                                                                                                                                        <label>Isbn</label> <br>
                                                                                                                                                                                                         <input type="num" name="isbn"> <br>
-
-                                                                                                                                                                                                        <button type="submit">Guardar</button>
-                                                                                                                                                                                                        <button type="reset">Borrar</button>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <button type="submit" class="btn btn-outline-success">Buscar</button>
+                                                                                                                                                                                                        <button type="reset" class="btn btn-outline-danger">Cancelar</button>
 
                                                                                                                                                                                                         </form>
 
 
 
                                                                                                                                                                                                         <h3 align="left">POR AUTOR</h3>
-                                                                                                                                                                                                        <form action="pagLibro/buscarLibroPorAutor" method="GET" align="left">
-                                                                                                                                                                                                        <label>Nombre del Autor</label> <br>
+                                                                                                                                                                                                        <form action="/PagLibro/buscarLibroPorAutor" method="GET" align="left">
+                                                                                                                                                                                                        <label>Autor</label> <br>
                                                                                                                                                                                                         <input type="text" name="autor"> <br>
-
-                                                                                                                                                                                                        <button type="submit">Guardar</button>
-                                                                                                                                                                                                        <button type="reset">Borrar</button>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <button type="submit" class="btn btn-outline-success">Buscar</button>
+                                                                                                                                                                                                        <button type="reset" class="btn btn-outline-danger">Cancelar</button>
 
                                                                                                                                                                                                         </form>
 
 
 
                                                                                                                                                                                                         <h3 align="right">POR EDITORIAL</h3>
-                                                                                                                                                                                                        <form action="pagLibro/buscarLibroPorEditorial" method="GET" align="right">
-                                                                                                                                                                                                        <label>Nombre de la editorial</label> <br>
+                                                                                                                                                                                                        <form action="/PagLibro/buscarLibroPorEditorial" method="GET" align="right">
+                                                                                                                                                                                                        <label>Editorial</label> <br>
                                                                                                                                                                                                         <input type="text" name="editorial"> <br>
-
-                                                                                                                                                                                                        <button type="submit">Guardar</button>
-                                                                                                                                                                                                        <button type="reset">Borrar</button>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <button type="submit" class="btn btn-outline-success">Guardar</button>
+                                                                                                                                                                                                        <button type="reset" class="btn btn-outline-danger">Cancelar</button>
 
                                                                                                                                                                                                         </form>
+                                                                                                                                                                                                        <br>
+                                                                                                                                                                                                        <br>
                                                                                                                                                                                                         </div>
+                                                                                                                                                                                                        <footer>
+                                                                                                                                                                                                        <nav class="navbar bg-dark justify-content-center">
+
+                                                                                                                                                                                                        <ul class="nav justify-content-center">
+
+                                                                                                                                                                                                        <li class="nav-item">
+                                                                                                                                                                                                        <a class="nav-link text-white" href="https://www.linkedin.com/in/fabyrossetto/"><u>Proyecto Realizado por Fabiana Rossetto</u> </a>                                                                                                                       
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        </li>
+
+                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                        </nav>
+                                                                                                                                                                                                        </footer>
 
 
 
 
 
-                                                                                                                                                                                                     
+
+
 
 
 
@@ -262,7 +311,7 @@ Siempre va primero el link de bootstrap y el de las librerias. Y por ultimo los 
                                                                                                                                                                                                         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
                                                                                                                                                                                                         crossorigin="anonymous"></script>
 
-
+                                                                                                                                                                                                        </div>
                                                                                                                                                                                                         </body>
 
                                                                                                                                                                                                         </html>

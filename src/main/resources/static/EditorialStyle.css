@@ -7,68 +7,126 @@ and open the template in the editor.
     Created on : 01/06/2022, 09:42:33
     Author     : Fabi
 */
-H1{
-    margin-top: 2%;
+
+#verde{
     font-family:cursive;
-    font-size: larger;
-    color: darksalmon;
+    font-size:large;
+    color:white;
+    background-color:green;
+}
 
+#error{
+    font-family:cursive;
+    font-size:large;
+    color:white;
+    background-color:red;
+}
+
+H1{
+    margin-top: 10%;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: xx-large;
+    color: darkslategray;
+
+}
+h2{
+   
+    margin-bottom:2%;
+    margin-top: 2%;
+    font-size: x-large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: darkslategray;
 
 }
 
-#registrar{
-    margin-top: 30%;
+h3{
+    font-size: large;
+    font-family:cursive;
+    color: darkslategray;
+    margin-top: 2%;
+    margin-bottom: 1%
+
 }
-#editar{
-    margin-top:-40%;
+
+.container-fluid {
+    height: 90%;
+    width: 100%;
 }
+
+
+
 label{
     margin-top: 0%;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color:indianred;
+    color:darkslategray;
     font-size: medium;
+    
+
 }
 
 body {
-    margin-top: 5%;
-    margin-right: 5%;
-    margin-left: 5%;
-    background-color: lemonchiffon;
-    background-attachment:scroll;
-    background-size: 20%;
-    background-repeat:repeat-y;
-    background-position:center;
-    background-image: url("/editorial.jpg");
-    margin-bottom:2%;
 
+    background-color: lightgray;
 
-
+}
+.cuerpo{
+    margin-right: 10%;
+    margin-left: 10%;
 }
 table{
 
-    border: 1px double mediumpurple;
+    border: 1px double darkslategray;
 }
 
-
-th, td {
-
-    vertical-align: top;
-    border: 1px double mediumpurple;
-}
 
 th{
     margin-top: 2%;
     font-size:smaller;
     font-family: cursive;
 
-    color:mediumpurple
+    color:darkslategray;
+    vertical-align: top;
+    border: 1px double darkslategray;
 }
 
 td{
     font-size:smaller;
     font-family: cursive;
 
-    color:mediumpurple
+    color:darkslategray;
+    vertical-align: top;
+    border: 1px double darkslategray;
 }
+.table-responsive {
+    min-height: .01%;
+    overflow-x: visible;
+}
+
+@media screen and (max-width: 400px) {
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    }
+    .table-responsive > .table {
+        margin-bottom: 0;
+    }
+    .table-responsive > .table > thead > tr > th,
+    .table-responsive > .table > tbody > tr > th,
+    .table-responsive > .table > tfoot > tr > th,
+    .table-responsive > .table > thead > tr > td,
+    .table-responsive > .table > tbody > tr > td,
+    .table-responsive > .table > tfoot > tr > td {
+        white-space: nowrap;
+
+    }
+}@media only screen and (max-width: 500px) { 
+    div{
+        width: 100%
+    }
+}
+
 
 

@@ -37,6 +37,7 @@ public class ControladorPrincipal {
     public String index() {
         return "PaginaPrincipal.html";
     }
+    
 
     @GetMapping("/registrarAutor")
     public String GuardarAutor(ModelMap modelo) {

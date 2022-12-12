@@ -77,7 +77,10 @@ public class Autor{
 
     @Override
     public String toString() {
-        return "Autor{" + "id=" + id + ", nombre=" + nombre + ", alta=" + alta + '}';
+        return "Autor: " + nombre 
+                + ", id: " + id 
+               
+                + ", alta: " + alta;
     }
    
    

@@ -79,7 +79,7 @@
                 </div>
 
                 <H2 align="left"><u>REGISTRAR UNA EDITORIAL</u></H2>
-                <form  action="paginaEditorial/registrarEditorial" method="POST" align="left">
+                <form  action="/registrarEditorial" method="POST" align="left">
 
                     <label>     Nombre    </label> <br>
                     <input type="text" name="nombre"> <br>
@@ -93,7 +93,7 @@
 
 
                 <H2 align="left"><u>EDITAR UNA EDITORIAL</u></H2>
-                <form  action="paginaEditorial/editarEditorial" method="POST" align="left">
+                <form  action="/editarEditorial" method="POST" align="left">
 
                     <label>Nombre Viejo</label> <br>
                     <input type="text" name="nombreViejo"> <br>
@@ -108,7 +108,7 @@
 
 
                 <H2 align="left"><u>ELIMINAR UNA EDITORIAL</u></H2>
-                <form action="paginaEditorial/eliminarEditorial" method= "POST" align="left">
+                <form action="/eliminarEditorial" method= "POST" align="left">
                     <label>Id de la editorial</label> <br>
                     <input type="text" name="id"> <br>
                     <br>
@@ -123,7 +123,7 @@
                 <H2 align="left"><u>BUSCAR UNA EDITORIAL</u></H2>
 
                 <H3 align="left">POR ID</H3>
-                <form action="paginaEditorial/buscarEditorialPorid" method= "GET" align="left">
+                <form action="/buscarEditorialPorid" method= "GET" align="left">
                     <label>Id</label> <br>
                     <input type="text" name="id"> <br>
                     <br>
@@ -132,7 +132,7 @@
                 </form>
 
                 <H3  align="left">POR NOMBRE</H3>
-                <form action="paginaEditorial/buscarEditorialPorNombre" method="GET" align="left">
+                <form action="/buscarEditorialPorNombre" method="GET" align="left">
                     <label>Nombre de la editorial</label> <br>
                     <input type="text" name="nombre"> <br>
                     <br>

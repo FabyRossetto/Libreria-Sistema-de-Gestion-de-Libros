@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -30,8 +30,6 @@ public class LibroController {
     @Autowired
     private LibroServicio ls;
 
-    
-
     @GetMapping("/registrarLibro")
     public String GuardarLibro(ModelMap modelo) {
         modelo.addAttribute("nombreLibros", ls.listarLibro());
@@ -40,14 +38,15 @@ public class LibroController {
 
     //metodo para crear el libro
     @PostMapping("/registrarLibro")//cuando entra a la barra del servidor ejecuta el metodo
-    public String GuardarLibro(ModelMap modelo, @RequestParam String titulo, @RequestParam Long isbn, @RequestParam Integer anio, @RequestParam String nombreAutor, @RequestParam String nombreEdit) throws Exception {
+    public String GuardarLibro(ModelMap modelo, @RequestParam String titulo, @RequestParam Long isbn, @RequestParam Integer anio, @RequestParam String nombreAutor, @RequestParam String nombre) throws Exception {
         try {
-            ls.CrearLibro(titulo, isbn, anio, nombreAutor, nombreEdit);
+            ls.CrearLibro(titulo, isbn, anio, nombreAutor, nombre);
             modelo.put("exito", "su libro se ha registrado con exito");
             modelo.addAttribute("nombreLibros", ls.listarLibro());
 
         } catch (Exception a) {
             modelo.put("error", "no se pudo registrar su libro");
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
 
         }
 
@@ -61,14 +60,15 @@ public class LibroController {
     }
 
     @PostMapping("/editarLibro")
-    public String editarLibro(ModelMap modelo, @RequestParam String id, @RequestParam Long isbn, @RequestParam String tituloNuevo, @RequestParam Integer anio, @RequestParam String autorViejo, @RequestParam String autorNuevo, @RequestParam String editVieja, @RequestParam String editNueva) throws Exception {
+    public String editarLibro(ModelMap modelo, @RequestParam String id, @RequestParam Long isbn, @RequestParam String tituloNuevo, @RequestParam Integer anio, @RequestParam String autorViejo, @RequestParam String autorNuevo, @RequestParam String nombreViejo, @RequestParam String nombreNuevo) throws Exception {
         try {
-            ls.modificarLibro(id, isbn,  tituloNuevo, anio, autorViejo, autorNuevo, editVieja, editNueva);
+            ls.modificarLibro(id, isbn, tituloNuevo, anio, autorViejo, autorNuevo, nombreViejo, nombreNuevo);
             modelo.put("exito", "su libro se ha editado con exito");
             modelo.addAttribute("nombreLibros", ls.listarLibro());
+            
         } catch (Exception a) {
             modelo.put("error", "su libro no se ha podido editar");
-
+            modelo.addAttribute("nombreLibros", ls.listarLibro());   
         }
 
         return "PaginaLibro";
@@ -89,6 +89,7 @@ public class LibroController {
 
         } catch (Exception a) {
             modelo.put("error", "su libro no se ha podido eliminar");
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
 
         }
 
@@ -99,29 +100,31 @@ public class LibroController {
     public String buscarLibroPorId(ModelMap modelo, @RequestParam String id) {
         try {
             Libro a = ls.buscarLibroPorId(id);
-            modelo.put("exito", "el libro encontrado es " + a);
+            modelo.put("exito", "El libro encontrado es " + a);
             modelo.addAttribute("nombreLibros", ls.listarLibro());
-           
+
         } catch (Exception a) {
             modelo.put("error", "su libro no se ha podido encontrar");
+            modelo.addAttribute("nombreLibros", ls.listarLibro());
         }
         return "PaginaLibro.html";
     }
 
     @GetMapping("/buscarLibroPorNombre")
     public String buscarLibroPorNombre(ModelMap modelo, @RequestParam String titulo) {
-        try{
-        Libro li = ls.buscarLibroPorTitulo(titulo);
-        if(li!= null){
-            
-            modelo.put("exito", "el libro encontrado es " + li);
-            modelo.addAttribute("nombreLibros", ls.listarLibro());
-        }
-        if(li==null){
-            modelo.put("error", "el libro no se ha podido encontrar");
-        }
-        } catch(Exception a){
-           return null; 
+        try {
+            Libro li = ls.buscarLibroPorTitulo(titulo);
+            if (li != null) {
+
+                modelo.put("exito", "El libro encontrado es: " + li);
+                modelo.addAttribute("nombreLibros", ls.listarLibro());
+            }
+            if (li == null) {
+                modelo.put("error", "el libro no se ha podido encontrar");
+                modelo.addAttribute("nombreLibros", ls.listarLibro());
+            }
+        } catch (Exception a) {
+            return null;
         }
         return "PaginaLibro.html";
     }
@@ -129,11 +132,18 @@ public class LibroController {
     @GetMapping("/buscarLibroPorIsbn")
     public String buscarLibroPorIsbn(ModelMap modelo, @RequestParam Long isbn) {
         try {
-            Libro li = ls.buscarLibroPorIsbn(isbn);
-            modelo.put("exito", "el libro encontrado es " + li);
-            modelo.addAttribute("nombreLibros", ls.listarLibro());
+            List<Libro> li = ls.buscarLibroPorIsbn(isbn);
+            if (li == null|| li.isEmpty()) {
+                modelo.put("error", "El libro no se ha podido encontrar");
+                modelo.addAttribute("nombreLibros", ls.listarLibro());
+            }
+            else {
+                modelo.put("exito", "el libro encontrado es : " + li);
+                modelo.addAttribute("nombreLibros", ls.listarLibro());
+            }
+            
         } catch (Exception a) {
-            modelo.put("error", "el libro no se ha podido encontrar");
+            return null;
         }
         return "PaginaLibro.html";
     }
@@ -142,12 +152,17 @@ public class LibroController {
     public String buscarLibroPorAutor(ModelMap modelo, @RequestParam String autor) {
         try {
             List<Libro> li = ls.buscarLibroPorAutor(autor);
-
-            modelo.put("exito", li);
-            modelo.addAttribute("nombreLibros", ls.listarLibro());
-
+            if (li == null || li.isEmpty()) {
+                modelo.put("error", "El libro no se ha podido encontrar");
+                modelo.addAttribute("nombreLibros", ls.listarLibro());
+            }
+            else {
+                modelo.put("exito", li);
+                modelo.addAttribute("nombreLibros", ls.listarLibro());
+            }
+            
         } catch (Exception a) {
-            modelo.put("error", "el libro no se ha podido encontrar");
+            return null;
         }
         return "PaginaLibro.html";
     }
@@ -156,12 +171,17 @@ public class LibroController {
     public String buscarLibroPorEditorial(ModelMap modelo, @RequestParam String editorial) {
         try {
             List<Libro> li = ls.buscarLibroPorEditorial(editorial);
-
-            modelo.put("exito", li);
-            modelo.addAttribute("nombreLibros", ls.listarLibro());
-
+             if (li == null || li.isEmpty()) {
+                modelo.put("error", "El libro no se ha podido encontrar");
+                modelo.addAttribute("nombreLibros", ls.listarLibro());
+            }
+            else {
+                modelo.put("exito", li);
+                modelo.addAttribute("nombreLibros", ls.listarLibro());
+            }
+           
         } catch (Exception a) {
-            modelo.put("error", "el libro no se ha podido encontrar");
+            return null;
         }
         return "PaginaLibro.html";
     }

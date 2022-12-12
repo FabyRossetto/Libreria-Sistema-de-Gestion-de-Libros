@@ -99,10 +99,14 @@ try{
     }
     
     public Autor buscarAutorPorNombre(String nombre) throws Exception{
+        try{
         validar(nombre);
         Autor autor= ar.buscarAutorPorNombre(nombre);
                 
         return autor;
+    }catch(Exception e){
+        return null;
+    }
     }
     
     //metodo listar para hacer la tabla

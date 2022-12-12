@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Fabi
  */
 @Controller
-@RequestMapping("/paginaDelAutor")
+@RequestMapping("")
 public class AutorController {
 
     @Autowired
@@ -40,9 +40,10 @@ try{
         Modelo.addAttribute("nombreAutores", as.listarAutor());
 }catch(Exception e){
    Modelo.put("error","hubo un error al registrar el autor");
+   Modelo.addAttribute("nombreAutores", as.listarAutor());
 
 }
-        return "PaginaAutor";
+        return "PaginaAutor.html";
     }
     
      
@@ -55,11 +56,11 @@ try{
            modelo.addAttribute("nombreAutores", as.listarAutor());
         } catch (Exception a) {
             modelo.put("error", "su autor no se ha podido editar");
-           
+            modelo.addAttribute("nombreAutores", as.listarAutor());
         }
 
        
-        return "PaginaAutor";
+        return "PaginaAutor.html";
     }
 
 
@@ -72,7 +73,7 @@ try{
 
         } catch (Exception a) {
             modelo.put("error", "su autor no se ha podido eliminar, si su autor se encuentra vinculado a un libro,primero debe eliminar el libro");
-
+          modelo.addAttribute("nombreAutores", as.listarAutor()); 
         }
 
        
@@ -84,8 +85,10 @@ try{
         try {
             Autor a = as.buscarAutorPorId(id);
             modelo.put("exito","el autor encontrado es "+ a);
+            modelo.addAttribute("nombreAutores", as.listarAutor());
         } catch (Exception a) {
             modelo.put("error", "su autor no se ha podido encontrar");
+            modelo.addAttribute("nombreAutores", as.listarAutor());
         }
         return "PaginaAutor.html";
     }
@@ -94,15 +97,20 @@ try{
     public String buscarAutorPorNombre(ModelMap modelo,@RequestParam String nombre) {
         try {
            Autor au=as.buscarAutorPorNombre(nombre);
+           if (au != null) {
             modelo.put("exito","el autor encontrado es " + au );
+            modelo.addAttribute("nombreAutores", as.listarAutor());
+           }
+            if (au == null){
+           modelo.put("error", "el autor no se ha podido encontrar");
+           modelo.addAttribute("nombreAutores", as.listarAutor());
+            }
         } catch (Exception a) {
-            modelo.put("error", "el autor no se ha podido encontrar");
+           return null;
         }
         return "PaginaAutor.html";
     }
     
-     
-
-   
+    
 
 }

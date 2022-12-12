@@ -151,17 +151,15 @@ public class Libro{
 
     @Override
     public String toString() {
-        return "  ******** Libro :" +
-                " TITULO=  " + titulo +
-                ", id=  " + id +
-                ", isbn=  " + isbn +
-                ", año=  " + anio +
-                ", alta=  " + alta +
-                ", autor=  " + autor +
-                ", editorial  =" + editorial +
-                " ******** ";
+        return 
+                "  " + titulo 
+                + ", id:  " + id 
+                + ", isbn:  " + isbn 
+                + ", año: " + anio 
+                + ", alta: " + alta 
+                + ", " + autor 
+                + ",  " + editorial 
+                + " / ";
     }
-    
-    
     
 }

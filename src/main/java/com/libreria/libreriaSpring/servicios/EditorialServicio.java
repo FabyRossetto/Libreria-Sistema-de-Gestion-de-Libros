@@ -104,10 +104,14 @@ try{
     }
 
     public  Editorial buscarEditorialPorNombre(String nombre) throws Exception {
+        try{
         validar(nombre);
         Editorial  Editorial= er.buscarEditorialPorNombre(nombre);
                 
         return Editorial;
+    }catch(Exception e){
+        return null;
+    }
     }
     
     

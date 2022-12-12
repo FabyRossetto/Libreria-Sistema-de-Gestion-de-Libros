@@ -126,7 +126,7 @@ Para los botones usar el fragment de thymeleaf.
 
 
                             <H2 align="center" id="registrar"><u>REGISTRAR UN AUTOR</u></H2>
-                            <form action="/paginaDelAutor/registrarAutor" method="POST" align="center">
+                            <form action="/registrarAutor" method="POST" align="center">
 
                                 <label>Nombre</label> <br>
                                     <input type="text" name="nombre"> <br>
@@ -140,7 +140,7 @@ Para los botones usar el fragment de thymeleaf.
 
 
                                                 <H2 align="center"><u>EDITAR UN AUTOR</u></H2>
-                                                <form action="paginaDelAutor/editarAutor" method="POST" align="center">
+                                                <form action="/editarAutor" method="POST" align="center">
 
                                                     <label>Nombre Viejo</label> <br>
                                                         <input type="text" name="nombreViejo"> <br>
@@ -153,7 +153,7 @@ Para los botones usar el fragment de thymeleaf.
 
 
                                                                                 <H2 align="center"><u>ELIMINAR UN AUTOR</u></H2>
-                                                                                <form action="paginaDelAutor/eliminarAutor" method="POST" align="center">
+                                                                                <form action="/eliminarAutor" method="POST" align="center">
                                                                                     <label>Id del Autor</label> <br>
                                                                                         <input type="text" name="id"> <br>
                                                                                                 <br>
@@ -167,7 +167,7 @@ Para los botones usar el fragment de thymeleaf.
                                                                                                     <H2 align="center"><u>BUSCAR UN AUTOR</u></H2>
 
                                                                                                     <H3 align="center">POR ID</H3>
-                                                                                                    <form action="paginaDelAutor/buscarAutorPorid" method="GET" align="center">
+                                                                                                    <form action="/buscarAutorPorid" method="GET" align="center">
                                                                                                         <label>Id</label> <br>
                                                                                                             <input type="text" name="id"> <br>
                                                                                                                     <br>
@@ -177,7 +177,7 @@ Para los botones usar el fragment de thymeleaf.
                                                                                                                         </form>
 
                                                                                                                         <H3 align="center"> POR NOMBRE</H3>
-                                                                                                                        <form action="paginaDelAutor/buscarAutorPorNombre" method="GET" align="center">
+                                                                                                                        <form action="/buscarAutorPorNombre" method="GET" align="center">
                                                                                                                             <label>Nombre</label> <br>
                                                                                                                                 <input type="text" name="nombre"> <br>
                                                                                                                                         <br>

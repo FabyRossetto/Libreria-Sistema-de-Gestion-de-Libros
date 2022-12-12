@@ -5,7 +5,6 @@
  */
 package com.libreria.libreriaSpring.servicios;
 
-
 import com.libreria.libreriaSpring.entidades.Autor;
 import com.libreria.libreriaSpring.entidades.Editorial;
 import com.libreria.libreriaSpring.entidades.Libro;
@@ -34,22 +33,20 @@ public class LibroServicio {
     AutorServicio as;
     @Autowired
     EditorialServicio es;
-   
-   
 
     @Transactional
-    public Libro CrearLibro(String titulo,Long isbn, Integer anio, String nombreAutor, String nombreEdit) throws Exception {
+    public Libro CrearLibro(String titulo, Long isbn, Integer anio, String nombreAutor, String nombre) throws Exception {
 //se le pasa por parametro lo que el usuario llena 
         try {
-            validar( titulo, isbn,anio, nombreAutor, nombreEdit);
+            validar(titulo, isbn, anio, nombreAutor, nombre);
             Libro li = new Libro();
-            
+
             li.setTitulo(titulo);
             li.setIsbn(isbn);
             li.setAnio(anio);
             li.setAlta(true);
             li.setAutor(as.CrearAutor(nombreAutor));
-            li.setEditorial(es.CrearEditorial(nombreEdit));
+            li.setEditorial(es.CrearEditorial(nombre));
 
             return lr.save(li);
 
@@ -60,11 +57,9 @@ public class LibroServicio {
     }
 
     @Transactional
-    public void modificarLibro(String id, Long isbn, String tituloNuevo, Integer anio, String autorViejo, String autorNuevo,String editVieja, String editNueva) throws Exception {
+    public void modificarLibro(String id, Long isbn, String tituloNuevo, Integer anio, String autorViejo, String autorNuevo, String nombreViejo, String nombreNuevo) throws Exception {
 
-       
         //optional es una clase que puede o no puede contener un valor, se usa por las dudas que el dato ingresado sea nulo
-
         Optional<Libro> respuesta = lr.findById(id);
         if (respuesta.isPresent()) {
             Libro libro = respuesta.get();
@@ -74,7 +69,7 @@ public class LibroServicio {
             libro.setTitulo(tituloNuevo);
             libro.setAnio(anio);
             libro.setAutor(as.modificarAutor(autorViejo, autorNuevo));
-            libro.setEditorial(es.modificarEditorial(editVieja, editNueva));
+            libro.setEditorial(es.modificarEditorial(nombreViejo, nombreNuevo));
             libro.setAlta(true);
 
             lr.save(libro);
@@ -95,6 +90,7 @@ public class LibroServicio {
             throw new Exception("no se encontro el libro que desea dar de baja");
         }
     }
+
     @Transactional// cualquier manejo que se haga con la db es una transaccion
     public void EliminarLibro(String id) throws Exception {
         Optional<Libro> respuesta = lr.findById(id);
@@ -106,13 +102,12 @@ public class LibroServicio {
         }
     }
 
-    public void validar( String titulo,Long isbn, Integer anio, String nombreAutor, String nombreEdit) throws Exception {
+    public void validar(String titulo, Long isbn, Integer anio, String nombreAutor, String nombreEdit) throws Exception {
 
-       
         if (titulo == null || titulo.trim().isEmpty()) {
             throw new Exception(" El titulo no puede ser nulo");
         }
-         if (isbn == null || isbn.toString().trim().isEmpty() || isbn.toString().length() < 4) {
+        if (isbn == null || isbn.toString().trim().isEmpty() || isbn.toString().length() < 4) {
 
             throw new Exception(" El isbn no puede ser nulo,ni tener menos de 4 caracteres");
         }
@@ -141,40 +136,52 @@ public class LibroServicio {
     }
 
     public Libro buscarLibroPorTitulo(String titulo) throws Exception {
-       try{      
-        Libro libro = lr.buscarLibroPorTitulo(titulo);
+        try {
+            Libro libro = lr.buscarLibroPorTitulo(titulo);
 
-        return libro;
-       }catch(Exception e){ 
-           return null;
-       }
+            return libro;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public Libro buscarLibroPorIsbn(Long isbn) throws Exception {
+    public List<Libro> buscarLibroPorIsbn(Long isbn) throws Exception {
+        try {
+            List<Libro> libro = lr.buscarLibroPorIsbn(isbn);
+            return libro;
 
-        Libro libro = lr.buscarLibroPorIsbn(isbn);
+        } catch (Exception e) {
+            return null;
+        }
 
-        return libro;
     }
 
     public List<Libro> buscarLibroPorAutor(String autor) throws Exception {
+        try {
+            List<Libro> libro = lr.buscarPorAutor(autor);
 
-        List<Libro> libro = lr.buscarPorAutor(autor);
+            return libro;
+        } catch (Exception e) {
+            return null;
+        }
 
-        return libro;
     }
 
     public List<Libro> buscarLibroPorEditorial(String editorial) throws Exception {
+        try {
+            List<Libro> libro = lr.buscarPorEditorial(editorial);
 
-        List<Libro> libro = lr.buscarPorEditorial(editorial);
+            return libro;
 
-        return libro;
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     public List<Libro> listarLibro() {
-       
-        List<Libro> l = lr.findAll();
 
+        List<Libro> l = lr.findAll();
 
         return l;
 

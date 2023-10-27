@@ -1,4 +1,4 @@
-# Proyecto-con-Spring
+# Libreria
 
 Descripcion: Este es un proyecto pensado como un sistema de gestión de libros para una librería, permitiendo la carga, edición, eliminación y búsqueda de libros, editoriales y autores.
 
